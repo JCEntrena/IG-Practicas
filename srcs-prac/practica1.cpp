@@ -25,9 +25,10 @@ std::vector<MallaInd> fig;
 
 void P1_Inicializar( int argc, char *argv[] )
 {
-   
     Cubo cubo(); 
-    Tetraedro tetraedro();    
+    Tetraedro tetraedro();   
+    
+    fig.push_back(cubo);  
      
 }
 
@@ -43,8 +44,18 @@ void P1_Inicializar( int argc, char *argv[] )
 
 bool P1_FGE_PulsarTeclaNormal( unsigned char tecla ) 
 {
-   // ........
-   return false ;
+
+    bool redibujar = false;
+
+    switch(tecla){
+        // Cambio de objeto
+        case 'C': {
+	        objeto_activo = (objeto_activo+1)%2;
+            redibujar = true; 
+	    }; break;
+        
+        default return false;
+    }
 }
 
 
