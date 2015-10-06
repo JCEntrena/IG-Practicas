@@ -25,8 +25,8 @@ vector<MallaInd> fig;
 void P1_Inicializar( int argc, char *argv[] )
 {
    
-    Cubo cubo; 
-    Tetraedro tetra;    
+    Cubo cubo(); 
+    Tetraedro tetraedro();    
 
 }
 
@@ -57,15 +57,21 @@ void P1_DibujarObjetos( unsigned modo )
 
 }
 
+//----------------------------------------------------------------------
+// Constructores para el Cubo y el Tetraedro. 
+
 Cubo::Cubo(){
-    (1,0,0)
-    (1,1,0)
-    (0,1,0)
-    (0,0,0)
-    (1,0,1)
-    (1,1,1)
-    (0,1,1)
-    (0,0,1)
+    // Inclusión de los vértices. 
+    vertices.push_back((1,0,0)); 
+    vertices.push_back((1,1,0));
+    vertices.push_back((0,1,0));
+    vertices.push_back((0,0,0));
+    vertices.push_back((1,0,1));
+    vertices.push_back((1,1,1));
+    vertices.push_back((0,1,1));
+    vertices.push_back((0,0,1));
+
+
 }
 
 Tetraedro::Tetraedro(){

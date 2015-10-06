@@ -1,6 +1,8 @@
 #ifndef OBJETO3D_HPP
 #define OBJETO3D_HPP
 
+#include<string> 
+
 // clase abstracta para objetos 3D visualizables con OpenGL
 class Objeto3D{
 
