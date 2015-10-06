@@ -12,19 +12,22 @@
 unsigned objeto_activo = 0 ; // objeto activo: cubo (0), tetraedro (1), otros....
 
 // ---------------------------------------------------------------------
-// declaraciones de estructuras de datos....
+// declaraciones de estructuras de datos...
 
+vector<MallaInd> fig; 
 
 
 // ---------------------------------------------------------------------
 // Función para implementar en la práctica 1 para inicialización.
 // Se llama una vez al inicio, cuando ya se ha creado la ventana e 
-// incializado OpenGL. 
+// inicializado OpenGL. 
 
 void P1_Inicializar( int argc, char *argv[] )
 {
    
-   
+    Cubo cubo; 
+    Tetraedro tetra;    
+
 }
 
 // ---------------------------------------------------------------------
@@ -51,5 +54,23 @@ bool P1_FGE_PulsarTeclaNormal( unsigned char tecla )
 void P1_DibujarObjetos( unsigned modo ) 
 {
   
+
+}
+
+Cubo::Cubo(){
+    (1,0,0)
+    (1,1,0)
+    (0,1,0)
+    (0,0,0)
+    (1,0,1)
+    (1,1,1)
+    (0,1,1)
+    (0,0,1)
+}
+
+Tetraedro::Tetraedro(){
+    
+    (0,0,1)
+    
 
 }
