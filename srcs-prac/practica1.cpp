@@ -8,13 +8,14 @@
 #include "aux.hpp"
 #include "tuplasg.hpp"   // Tupla3f 
 #include "practica1.hpp"
+#include <vector>
 
 unsigned objeto_activo = 0 ; // objeto activo: cubo (0), tetraedro (1), otros....
 
 // ---------------------------------------------------------------------
 // declaraciones de estructuras de datos...
 
-vector<MallaInd> fig; 
+std::vector<MallaInd> fig; 
 
 
 // ---------------------------------------------------------------------
@@ -27,7 +28,7 @@ void P1_Inicializar( int argc, char *argv[] )
    
     Cubo cubo(); 
     Tetraedro tetraedro();    
-
+     
 }
 
 // ---------------------------------------------------------------------
@@ -62,21 +63,23 @@ void P1_DibujarObjetos( unsigned modo )
 
 Cubo::Cubo(){
     // Inclusión de los vértices. 
-    vertices.push_back((1,0,0)); 
-    vertices.push_back((1,1,0));
-    vertices.push_back((0,1,0));
-    vertices.push_back((0,0,0));
-    vertices.push_back((1,0,1));
-    vertices.push_back((1,1,1));
-    vertices.push_back((0,1,1));
-    vertices.push_back((0,0,1));
+    vertices.push_back(Tupla3f(1,0,0)); 
+    vertices.push_back(Tupla3f(1,1,0));
+    vertices.push_back(Tupla3f(0,1,0));
+    vertices.push_back(Tupla3f(0,0,0));
+    vertices.push_back(Tupla3f(1,0,1));
+    vertices.push_back(Tupla3f(1,1,1));
+    vertices.push_back(Tupla3f(0,1,1));
+    vertices.push_back(Tupla3f(0,0,1));
+
+    // Inclusión de los índices 
 
 
 }
 
 Tetraedro::Tetraedro(){
-    
-    (0,0,1)
+    // Inclusión de los vértices. 
+    vertices.push_back(Tupla3f(0,0,1)); 
     
 
 }
