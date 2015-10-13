@@ -105,7 +105,7 @@ Tetraedro::Tetraedro(){
     // Inclusión de los índices. 
     indices.push_back(Tupla3i(0,1,3));
     indices.push_back(Tupla3i(3,2,0));
-    indices.push_back(Tupla3i(0,2,3));
+    indices.push_back(Tupla3i(0,2,1));
     indices.push_back(Tupla3i(1,2,3));
 
 }
