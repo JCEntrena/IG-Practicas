@@ -79,18 +79,18 @@ Cubo::Cubo(){
     vertices.push_back(Tupla3f(0,0,1));
 
     // Inclusión de los índices.
-    indices.push_back(Tupla3i(8,5,4)); 
+    indices.push_back(Tupla3i(7,4,3)); 
+    indices.push_back(Tupla3i(3,4,0)); 
+    indices.push_back(Tupla3i(0,1,2)); 
+    indices.push_back(Tupla3i(2,0,3)); 
+    indices.push_back(Tupla3i(3,2,6)); 
+    indices.push_back(Tupla3i(6,3,7)); 
+    indices.push_back(Tupla3i(7,6,5)); 
+    indices.push_back(Tupla3i(5,7,4)); 
     indices.push_back(Tupla3i(4,5,1)); 
-    indices.push_back(Tupla3i(1,2,3)); 
-    indices.push_back(Tupla3i(3,1,4)); 
-    indices.push_back(Tupla3i(4,3,7)); 
-    indices.push_back(Tupla3i(7,4,8)); 
-    indices.push_back(Tupla3i(8,7,6)); 
-    indices.push_back(Tupla3i(6,8,5)); 
-    indices.push_back(Tupla3i(5,6,2)); 
-    indices.push_back(Tupla3i(2,5,1)); 
-    indices.push_back(Tupla3i(3,2,7)); 
-    indices.push_back(Tupla3i(2,7,6)); 
+    indices.push_back(Tupla3i(1,4,0)); 
+    indices.push_back(Tupla3i(2,1,6)); 
+    indices.push_back(Tupla3i(1,6,5)); 
 
 
 }
@@ -103,9 +103,9 @@ Tetraedro::Tetraedro(){
     vertices.push_back(Tupla3f(0,-1,0)); 
 
     // Inclusión de los índices. 
-    indices.push_back(Tupla3i(1,2,4));
-    indices.push_back(Tupla3i(4,3,1));
-    indices.push_back(Tupla3i(1,3,2));
-    indices.push_back(Tupla3i(2,3,4));
+    indices.push_back(Tupla3i(0,1,3));
+    indices.push_back(Tupla3i(3,2,0));
+    indices.push_back(Tupla3i(0,2,3));
+    indices.push_back(Tupla3i(1,2,3));
 
 }
