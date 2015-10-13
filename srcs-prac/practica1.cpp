@@ -25,10 +25,11 @@ std::vector<MallaInd> fig;
 
 void P1_Inicializar( int argc, char *argv[] )
 {
-    Cubo cubo(); 
-    Tetraedro tetraedro();   
-    
-    fig.push_back(cubo);  
+    Cubo cubo; 
+    Tetraedro tetraedro;   
+
+	fig.push_back(cubo); 
+	fig.push_back(tetraedro); 
      
 }
 
@@ -42,20 +43,14 @@ void P1_Inicializar( int argc, char *argv[] )
 //  - devuelve 'false' si la tecla no se usa en esta práctica (no ha
 //    cambiado nada)
 
-bool P1_FGE_PulsarTeclaNormal( unsigned char tecla ) 
-{
+bool P1_FGE_PulsarTeclaNormal( unsigned char tecla ) {
 
-    bool redibujar = false;
+ 	if (toupper(tecla) == 'C'){
+	  	objeto_activo = (objeto_activo+1)%fig.size();
+       	return true;  
+	}
 
-    switch(tecla){
-        // Cambio de objeto
-        case 'C': {
-	        objeto_activo = (objeto_activo+1)%2;
-            redibujar = true; 
-	    }; break;
-        
-        default return false;
-    }
+	return false; 
 }
 
 
@@ -63,9 +58,9 @@ bool P1_FGE_PulsarTeclaNormal( unsigned char tecla )
 // Función a implementar en la práctica 1  para dibujar los objetos
 // modo: 0 - puntos, 1 - alambre, 2 - sólido, 3 - sólido ajedrez , >=4 otros....
 
-void P1_DibujarObjetos( unsigned modo ) 
-{
-  
+void P1_DibujarObjetos( unsigned modo ) {
+
+  	fig[objeto_activo].visualizar(modo); 
 
 }
 
