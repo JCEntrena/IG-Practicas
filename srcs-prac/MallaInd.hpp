@@ -17,7 +17,7 @@ class MallaPLY : public MallaInd{
    public: 
    // Constructor
    // Recibe como parámetro el nombre del archivo PLY a leer. 
-   MallaPly(const char* nombre_archivo); 
+   MallaPLY(const char* nombre_archivo); 
 }; 
 
 
