@@ -23,12 +23,11 @@ std::vector<MallaInd> fig;
 // Se llama una vez al inicio, cuando ya se ha creado la ventana e 
 // inicializado OpenGL. 
 
-void P1_Inicializar( int argc, char *argv[] )
-{
-    Cubo cubo; 
-    Tetraedro tetraedro;   
+void P1_Inicializar( int argc, char *argv[] ){
 
-	fig.push_back(cubo); 
+   Cubo cubo; 
+   Tetraedro tetraedro;   
+   fig.push_back(cubo); 
 	fig.push_back(tetraedro); 
      
 }
@@ -43,7 +42,7 @@ void P1_Inicializar( int argc, char *argv[] )
 //  - devuelve 'false' si la tecla no se usa en esta práctica (no ha
 //    cambiado nada)
 
-bool P1_FGE_PulsarTeclaNormal( unsigned char tecla ) {
+bool P1_FGE_PulsarTeclaNormal(unsigned char tecla){
 
  	if (toupper(tecla) == 'C'){
 	  	objeto_activo = (objeto_activo+1)%fig.size();
@@ -58,7 +57,7 @@ bool P1_FGE_PulsarTeclaNormal( unsigned char tecla ) {
 // Función a implementar en la práctica 1  para dibujar los objetos
 // modo: 0 - puntos, 1 - alambre, 2 - sólido, 3 - sólido ajedrez , >=4 otros....
 
-void P1_DibujarObjetos( unsigned modo ) {
+void P1_DibujarObjetos(unsigned modo){
 
   	fig[objeto_activo].visualizar(modo); 
 
@@ -91,7 +90,6 @@ Cubo::Cubo(){
     indices.push_back(Tupla3i(1,4,0)); 
     indices.push_back(Tupla3i(2,1,6)); 
     indices.push_back(Tupla3i(1,6,5)); 
-
 
 }
 
