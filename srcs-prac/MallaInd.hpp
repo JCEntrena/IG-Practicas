@@ -11,3 +11,23 @@ protected:
 public:
     virtual void visualizar(unsigned modo_vis);
 };
+
+// Clase para mallas indexadas obtenidas de un PLY.
+class MallaPLY : public MallaInd{
+   public: 
+   // Constructor
+   // Recibe como parámetro el nombre del archivo PLY a leer. 
+   MallaPly(const char* nombre_archivo); 
+}; 
+
+
+// Clase para mallas indexadas obtenidas de un PLY. 
+// Generadas por revolución. 
+class MallaRevol : public MallaInd{
+   public: 
+   // Constructor. 
+   // Recibe como parámetros: 
+   // - El nombre del archivo PLY. 
+   // - El número de copias del perfil.
+   MallaRevol(const char* nombre_archivo, unsigned nperfiles); 
+}; 
