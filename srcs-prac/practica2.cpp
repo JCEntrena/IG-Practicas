@@ -40,7 +40,7 @@ bool P2_FGE_PulsarTeclaNormal(unsigned char tecla){
 
  	if (toupper(tecla) == 'C'){
 	  	objeto_activo = (objeto_activo+1)%fig.size();
-       	return true;  
+      return true;  
 	}
 
 	return false; 
