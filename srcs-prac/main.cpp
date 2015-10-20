@@ -246,17 +246,25 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
       case '-' :
          frustum_factor_escala /= 1.05;
          break;
+      // Cambios entre prácticas. 
+      case '1': 
+         practica_actual = 1; 
+         break; 
+      case '2': 
+         practica_actual = 2; 
+         break; 
+       
       // Modos de visualización. 
-      case '1' : 
+      case 'A' : // Modo puntos
          modo_vis = 0; 
          break; 
-      case '2' :
+      case 'S' : // Modo aristas
          modo_vis = 1; 
          break; 
-      case '3' : 
+      case 'D' : // Modo sólido
          modo_vis = 2; 
          break; 
-      case '4' : 
+      case 'F' : // Modo ajedrez
          modo_vis = 3; 
          break; 
       default:
@@ -264,9 +272,10 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
          switch( practica_actual ) 
          {
             case 1 :
-               redibujar = P1_FGE_PulsarTeclaNormal( tecla ) ; // true si es necesario redibujar 
+               redibujar = P1_FGE_PulsarTeclaNormal(tecla) ; // true si es necesario redibujar 
                break ;
-            // falta: case 2, case 3, etc....
+            case 2 : 
+               redibujar = P2_FGE_PulsarTeclaNormal(tecla); 
             default :
                redibujar = false ; // la tecla no es de la práctica activa (no es necesario redibujar)
          }
