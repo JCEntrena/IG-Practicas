@@ -1,5 +1,6 @@
 #include "MallaInd.hpp"
 
+// Implementación de la función para la visualización de objetos. 
 void MallaInd::visualizar(unsigned modo_vis){
     
     glEnableClientState(GL_VERTEX_ARRAY); // Habilitar array de vértices. 
@@ -33,4 +34,20 @@ void MallaInd::visualizar(unsigned modo_vis){
 
     glDisableClientState(GL_VERTEX_ARRAY);
 }
+
+// Constructor para las mallas indexadas a partir de un archivo PLY
+MallaPLY::MallaPLY(const char* nombre_archivo){
+
+}
+
+
+// Constructor para las mallas indexadas a partir de la revolución de una polilínea. 
+MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
+
+}
+
+
+
+
+
 

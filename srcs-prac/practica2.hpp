@@ -12,7 +12,7 @@
 
 void P2_Inicializar( int argc, char *argv[] ) ;
 bool P2_FGE_PulsarTeclaNormal(  unsigned char tecla ) ;
-void P2_DibujarObjetos( unsigned modo ) ; 
+void P2_DibujarObjetos( unsigned modo ) ;
 
 
 #endif
