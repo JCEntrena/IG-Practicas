@@ -177,14 +177,14 @@ void DibujarObjetos()
    switch( practica_actual )
    {
       case 1 :
-         P1_DibujarObjetos( modo_vis ) ; // definido en 'practica1.hpp'
-         break ;
+         P1_DibujarObjetos(modo_vis); // definido en 'practica1.hpp'
+         break;
       case 2 :
-
+         P2_DibujarObjetos(modo_vis);
          break;
       default :
          cout << "El valor de 'practica_actual' (" << practica_actual  << ") es incorrecto" << endl ;
-         break ;
+         break;
    }
 }
 
