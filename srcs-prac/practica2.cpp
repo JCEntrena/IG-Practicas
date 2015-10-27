@@ -8,14 +8,19 @@
 #include "aux.hpp"
 #include "tuplasg.hpp"   // Tupla3f
 #include "practica2.hpp"
+#include <string>
 
 unsigned objeto_activo_2 = 0 ; // Objeto activo
 
 // ---------------------------------------------------------------------
 // Declaraciones de estructuras de datos...
 
-std::vector<MallaInd> figuras;
+std::vector<MallaInd*> figuras;
 
+MallaPLY* ply_1 = NULL;
+MallaRevol* revol_1 = NULL;
+figuras.push_back(ply_1);
+figuras.push_back(revol_1);
 
 // ---------------------------------------------------------------------
 // Función para implementar en la práctica para inicialización.
@@ -23,6 +28,15 @@ std::vector<MallaInd> figuras;
 // inicializado OpenGL.
 
 void P2_Inicializar( int argc, char *argv[] ){
+   string a, b;
+   if (argc < 2){
+      a = "../plys/beethoven.ply"
+      b = "../plys/peon.ply"
+   }
+   else if (argc < 3){
+      a = argv[2];
+      b = "../plys/peon.ply"
+   }
 
 }
 
@@ -38,7 +52,7 @@ void P2_Inicializar( int argc, char *argv[] ){
 
 bool P2_FGE_PulsarTeclaNormal(unsigned char tecla){
 
- 	if (toupper(tecla) == 'C'){
+ 	if (toupper(tecla) == 'O'){
 	  	objeto_activo_2 = (objeto_activo_2+1)%figuras.size();
       return true;
 	}
@@ -46,12 +60,10 @@ bool P2_FGE_PulsarTeclaNormal(unsigned char tecla){
 	return false;
 }
 
-
 // ---------------------------------------------------------------------
 // Función para dibujar los objetos, implementada en MallaInd.
 
 void P2_DibujarObjetos(unsigned modo){
 
-  	figuras[objeto_activo_2].visualizar(modo);
-
+  	&figuras[objeto_activo_2].visualizar(modo);
 }
