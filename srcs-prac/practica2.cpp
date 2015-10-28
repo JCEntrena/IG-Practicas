@@ -9,18 +9,14 @@
 #include "tuplasg.hpp"   // Tupla3f
 #include "practica2.hpp"
 #include <string>
+#include <stdio.h>
 
 unsigned objeto_activo_2 = 0 ; // Objeto activo
 
 // ---------------------------------------------------------------------
 // Declaraciones de estructuras de datos...
 
-std::vector<MallaInd*> figuras;
-
-MallaPLY* ply_1 = NULL;
-MallaRevol* revol_1 = NULL;
-figuras.push_back(ply_1);
-figuras.push_back(revol_1);
+std::vector<MallaInd> figuras;
 
 // ---------------------------------------------------------------------
 // Función para implementar en la práctica para inicialización.
@@ -28,21 +24,24 @@ figuras.push_back(revol_1);
 // inicializado OpenGL.
 
 void P2_Inicializar( int argc, char *argv[] ){
-   string a, b;
-   int n = 3;
+   // Para convertir char* en unsigned int
+   int n = atoi(argv[3]);
+
+   if (n < 3)
+      n = 3;
 
    if (argc < 2){
-      figuras.at(0) = new MallaPLY("../plys/beethoven.ply");
-      figuras.at(1) = new MallaRevol("../plys/peon.ply", 4);
+      figuras.at(0) = MallaPLY("../plys/beethoven.ply");
+      figuras.at(1) = MallaRevol("../plys/peon.ply", 4);
    }
 
    else if (argc < 3){
-      figuras.at(0) = new MallaPLY(argv[2]);
-      figuras.at(1) = new MallaRevol("../plys/peon.ply", 4);
+      figuras.at(0) = MallaPLY(argv[1]);
+      figuras.at(1) = MallaRevol("../plys/peon.ply", 4);
    }
    if (argc >= 4){
-      figuras.at(0) = new MallaPLY(argv[2]);
-      figuras.at(1) = new MallaRevol(argv[3], argv[4]);
+      figuras.at(0) = MallaPLY(argv[1]);
+      figuras.at(1) = MallaRevol(argv[2], n);
    }
 
 }
@@ -72,5 +71,5 @@ bool P2_FGE_PulsarTeclaNormal(unsigned char tecla){
 
 void P2_DibujarObjetos(unsigned modo){
 
-  	&figuras[objeto_activo_2].visualizar(modo);
+  	figuras[objeto_activo_2].visualizar(modo);
 }

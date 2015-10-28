@@ -84,9 +84,8 @@ MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
                y = vertices.at(vertices.size() - num_vertices)(1),
                z = vertices.at(vertices.size() - num_vertices)(2);
          // Creamos un nuevo punto a partir del primero.
-         vertices.push_back(Tupla3f(x*coseno - z*seno, y, x*seno + z*coseno)); 
+         vertices.push_back(Tupla3f(x*coseno - z*seno, y, x*seno + z*coseno));
       }
 
    }
-
 }
