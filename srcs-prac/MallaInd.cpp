@@ -37,21 +37,9 @@ void MallaInd::visualizar(unsigned modo_vis){
 
 // Constructor para las mallas indexadas a partir de un archivo PLY
 MallaPLY::MallaPLY(const char* nombre_archivo){
-   ply::read(nombre_archivo, vertices, indices);
-}
-
-
-// Constructor para las mallas indexadas a partir de la revolución de una polilínea.
-MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
-   // Definición del ángulo.
-   const double PI = 3.1415926536;
-   double angle = 2*PI/nperfiles;
-
-   double rotation_matrix[3][3] = {[cos(angle), 0, sin(angle)], [0,1,0], [-sin(angle), 0, cos(angle)]}
-
    // Estructuras auxiliares para la lectura.
-   vector<float> vertex_aux;
-   vector<int> index_aux;
+   std::vector<float> vertex_aux;
+   std::vector<int> index_aux;
    // Lectura
    ply::read(nombre_archivo, vertex_aux, index_aux);
 
@@ -60,6 +48,34 @@ MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
       vertices.push_back(Tupla3f(vertex_aux.at(i), vertex_aux.at(i+1), vertex_aux.at(i+2)));
       indices.push_back(Tupla3i(index_aux.at(i), index_aux.at(i+1), index_aux.at(i+2)));
    }
+}
+
+
+// Constructor para las mallas indexadas a partir de la revolución de una polilínea.
+MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
+   // Definición del ángulo.
+   const double PI = 3.1415926536;
+   double angle = 2*PI/nperfiles;
+   // Seno y coseno del ángulo, para la rotación.
+   // Nuestra rotación será sobre el eje y, luego las nuevas coordenadas serán:
+   // x ---> x cos(angle) - z sen(angle)
+   // y ---> y
+   // z ---> x sen (angle) + z cos(angle)
+   double seno = sin(angle), coseno = cos(angle);
+
+   // Estructuras auxiliares para la lectura.
+   std::vector<float> vertex_aux;
+   std::vector<int> index_aux;
+   // Lectura
+   ply::read(nombre_archivo, vertex_aux, index_aux);
+
+   // Creamos los vectores de Tuplas a partir de lo obtenido.
+   for (int i = 0; i < vertex_aux.size(); i = i+3){
+      vertices.push_back(Tupla3f(vertex_aux.at(i), vertex_aux.at(i+1), vertex_aux.at(i+2)));
+      indices.push_back(Tupla3i(index_aux.at(i), index_aux.at(i+1), index_aux.at(i+2)));
+   }
+
+   int v_size = vertices.size(), i_size = indices.size(); 
 
    // Añadimos el resto de vértices y los índices a cada vector.
    for(int i = 0; i < nperfiles; i++){
