@@ -29,13 +29,20 @@ figuras.push_back(revol_1);
 
 void P2_Inicializar( int argc, char *argv[] ){
    string a, b;
+   int n = 3;
+
    if (argc < 2){
-      a = "../plys/beethoven.ply"
-      b = "../plys/peon.ply"
+      figuras.at(0) = new MallaPLY("../plys/beethoven.ply");
+      figuras.at(1) = new MallaRevol("../plys/peon.ply", 4);
    }
+
    else if (argc < 3){
-      a = argv[2];
-      b = "../plys/peon.ply"
+      figuras.at(0) = new MallaPLY(argv[2]);
+      figuras.at(1) = new MallaRevol("../plys/peon.ply", 4);
+   }
+   if (argc >= 4){
+      figuras.at(0) = new MallaPLY(argv[2]);
+      figuras.at(1) = new MallaRevol(argv[3], argv[4]);
    }
 
 }
