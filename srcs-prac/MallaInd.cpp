@@ -75,11 +75,17 @@ MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
       indices.push_back(Tupla3i(index_aux.at(i), index_aux.at(i+1), index_aux.at(i+2)));
    }
 
-   int v_size = vertices.size(), i_size = indices.size(); 
+   int num_vertices = vertices.size(), num_indices = indices.size();
 
    // Añadimos el resto de vértices y los índices a cada vector.
    for(int i = 0; i < nperfiles; i++){
-
+      for (int j = 0; j < num_vertices; j++){
+         float x = vertices.at(vertices.size() - num_vertices)(0),
+               y = vertices.at(vertices.size() - num_vertices)(1),
+               z = vertices.at(vertices.size() - num_vertices)(2);
+         // Creamos un nuevo punto a partir del primero.
+         vertices.push_back(Tupla3f(x*coseno - z*seno, y, x*seno + z*coseno)); 
+      }
 
    }
 
