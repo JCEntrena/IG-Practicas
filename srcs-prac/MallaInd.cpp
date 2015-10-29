@@ -44,10 +44,12 @@ MallaPLY::MallaPLY(const char* nombre_archivo){
    ply::read(nombre_archivo, vertex_aux, index_aux);
 
    // Creamos los vectores de Tuplas a partir de lo obtenido.
-   for (int i = 0; i < vertex_aux.size(); i = i+3){
+   for (int i = 0; i < vertex_aux.size(); i = i+3)
       vertices.push_back(Tupla3f(vertex_aux.at(i), vertex_aux.at(i+1), vertex_aux.at(i+2)));
+
+   for (int i = 0; i < index_aux.size(); i = i+3)
       indices.push_back(Tupla3i(index_aux.at(i), index_aux.at(i+1), index_aux.at(i+2)));
-   }
+
 }
 
 
@@ -65,17 +67,15 @@ MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
 
    // Estructuras auxiliares para la lectura.
    std::vector<float> vertex_aux;
-   std::vector<int> index_aux;
    // Lectura
-   ply::read(nombre_archivo, vertex_aux, index_aux);
+   ply::read_vertices(nombre_archivo, vertex_aux);
 
    // Creamos los vectores de Tuplas a partir de lo obtenido.
    for (int i = 0; i < vertex_aux.size(); i = i+3){
       vertices.push_back(Tupla3f(vertex_aux.at(i), vertex_aux.at(i+1), vertex_aux.at(i+2)));
-      indices.push_back(Tupla3i(index_aux.at(i), index_aux.at(i+1), index_aux.at(i+2)));
    }
 
-   int num_vertices = vertices.size(), num_indices = indices.size();
+   int num_vertices = vertices.size(); 
 
    // Añadimos el resto de vértices y los índices a cada vector.
    for(int i = 0; i < nperfiles; i++){

@@ -31,17 +31,17 @@ void P2_Inicializar( int argc, char *argv[] ){
       n = 3;
 
    if (argc < 2){
-      figuras.at(0) = MallaPLY("../plys/beethoven.ply");
-      figuras.at(1) = MallaRevol("../plys/peon.ply", 4);
+      figuras.push_back(MallaPLY("../plys/beethoven.ply"));
+      figuras.push_back(MallaRevol("../plys/peon.ply", 3));
    }
 
    else if (argc < 3){
-      figuras.at(0) = MallaPLY(argv[1]);
-      figuras.at(1) = MallaRevol("../plys/peon.ply", 4);
+      figuras.push_back(MallaPLY(argv[1]));
+      figuras.push_back(MallaRevol("../plys/peon.ply", 3));
    }
    if (argc >= 4){
-      figuras.at(0) = MallaPLY(argv[1]);
-      figuras.at(1) = MallaRevol(argv[2], n);
+      figuras.push_back(MallaPLY(argv[1]));
+      figuras.push_back(MallaRevol(argv[2], n));
    }
 
 }
@@ -70,6 +70,5 @@ bool P2_FGE_PulsarTeclaNormal(unsigned char tecla){
 // Función para dibujar los objetos, implementada en MallaInd.
 
 void P2_DibujarObjetos(unsigned modo){
-
-  	figuras[objeto_activo_2].visualizar(modo);
+   figuras.at(objeto_activo_2).visualizar(modo);
 }

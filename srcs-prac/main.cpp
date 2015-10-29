@@ -263,7 +263,7 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
       default:
          redibujar = false ;
          switch( practica_actual )
-         {
+         { 
             case 1 :
                redibujar = P1_FGE_PulsarTeclaNormal(tecla) ; // true si es necesario redibujar
                break ;
@@ -455,7 +455,7 @@ void Inicializar( int argc, char *argv[] )
    P1_Inicializar( argc, argv ) ;
 
    // Inicializar práctica 2.
-   P2_Inicializar(argc, argv); 
+   P2_Inicializar(argc, argv);
 }
 
 // *********************************************************************
