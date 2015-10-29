@@ -451,8 +451,11 @@ void Inicializar( int argc, char *argv[] )
    // opengl: define proyección y atributos iniciales
    Inicializa_OpenGL() ;
 
-   // inicializar práctica 1.
+   // Inicializar práctica 1.
    P1_Inicializar( argc, argv ) ;
+
+   // Inicializar práctica 2.
+   P2_Inicializar(argc, argv); 
 }
 
 // *********************************************************************
