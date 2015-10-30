@@ -49,9 +49,7 @@ MallaPLY::MallaPLY(const char* nombre_archivo){
 
    for (int i = 0; i < index_aux.size(); i = i+3)
       indices.push_back(Tupla3i(index_aux.at(i), index_aux.at(i+1), index_aux.at(i+2)));
-
 }
-
 
 // Constructor para las mallas indexadas a partir de la revolución de una polilínea.
 MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
@@ -89,20 +87,19 @@ MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
          // Creamos un nuevo punto a partir del primero.
          vertices.push_back(Tupla3f(x*coseno - z*seno, y, x*seno + z*coseno));
       }
-   // Añadimos los índices.
-
-
    }
+
+   // Añadimos los índices.
    for (int i = 0; i < nperfiles; i++){
       for (int j = 0; j < num_vertices - 1; j++){
+         // Triangulo de puntos (0, 1, n)
          indices.push_back(Tupla3i((j+i*num_vertices)%(nperfiles*num_vertices),
                                    (j+i*num_vertices+1)%(nperfiles*num_vertices),
                                    ((i+1)*num_vertices+j)%(nperfiles*num_vertices)));
-
+         // Triángulo de puntos (1, n, n+1)
          indices.push_back(Tupla3i((j+i*num_vertices+1)%(nperfiles*num_vertices),
                                    ((i+1)*num_vertices+j)%(nperfiles*num_vertices),
                                    ((i+1)*num_vertices+j+1)%(nperfiles*num_vertices)));
       }
    }
-
 }
