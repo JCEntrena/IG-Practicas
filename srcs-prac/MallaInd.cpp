@@ -75,10 +75,10 @@ MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
       vertices.push_back(Tupla3f(vertex_aux.at(i), vertex_aux.at(i+1), vertex_aux.at(i+2)));
    }
 
-   int num_vertices = vertices.size(); 
+   int num_vertices = vertices.size();
 
-   // Añadimos el resto de vértices y los índices a cada vector.
-   for(int i = 0; i < nperfiles; i++){
+   // Añadimos el resto de vértices a cada vector.
+   for(int i = 1; i < nperfiles; i++){
       for (int j = 0; j < num_vertices; j++){
          float x = vertices.at(vertices.size() - num_vertices)(0),
                y = vertices.at(vertices.size() - num_vertices)(1),
@@ -86,6 +86,20 @@ MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
          // Creamos un nuevo punto a partir del primero.
          vertices.push_back(Tupla3f(x*coseno - z*seno, y, x*seno + z*coseno));
       }
+   // Añadimos los índices.
+
 
    }
+   for (int i = 0; i < nperfiles; i++){
+      for (int j = 0; j < num_vertices - 1; j++){
+         indices.push_back(Tupla3i((j+i*num_vertices)%(nperfiles*num_vertices),
+                                   (j+i*num_vertices+1)%(nperfiles*num_vertices),
+                                   ((i+1)*num_vertices+j)%(nperfiles*num_vertices)));
+
+         indices.push_back(Tupla3i((j+i*num_vertices+1)%(nperfiles*num_vertices),
+                                   ((i+1)*num_vertices+j)%(nperfiles*num_vertices),
+                                   ((i+1)*num_vertices+j+1)%(nperfiles*num_vertices)));
+      }
+   }
+
 }
