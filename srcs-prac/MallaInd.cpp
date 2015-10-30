@@ -65,7 +65,7 @@ MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
    // z ---> x sen (angle) + z cos(angle)
    double seno = sin(angle), coseno = cos(angle);
 
-   // Estructuras auxiliares para la lectura.
+   // Estructura auxiliar para la lectura.
    std::vector<float> vertex_aux;
    // Lectura
    ply::read_vertices(nombre_archivo, vertex_aux);
@@ -76,6 +76,9 @@ MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
    }
 
    int num_vertices = vertices.size();
+   // Puntos de las bases superior e inferior.
+   float top = vertices.front()(1);
+   float bottom = vertices.back()(1);
 
    // Añadimos el resto de vértices a cada vector.
    for(int i = 1; i < nperfiles; i++){
