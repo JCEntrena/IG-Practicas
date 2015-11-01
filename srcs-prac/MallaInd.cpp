@@ -89,6 +89,12 @@ MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
       }
    }
 
+   //Añadimos las dos proyecciones para las tapas.
+   vertices.push_back(Tupla3f(0, top, 0));
+   int index_top = vertices.size() - 1;
+   vertices.push_back(Tupla3f(0, bottom, 0));
+   int index_bottom = vertices.size() - 1;
+
    // Añadimos los índices.
    for (int i = 0; i < nperfiles; i++){
       for (int j = 0; j < num_vertices - 1; j++){
@@ -102,4 +108,17 @@ MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
                                    ((i+1)*num_vertices+j+1)%(nperfiles*num_vertices)));
       }
    }
+
+   // Índices para las tapas.
+   for (int i = 0; i < nperfiles; i++){
+      // Para la tapa superior (top)
+      indices.push_back(Tupla3i(i*num_vertices,
+                                ((i+1)*num_vertices)%(nperfiles*num_vertices),
+                                index_top));
+      // Para la tapa inferior (bottom)
+      indices.push_back(Tupla3i((i+1)*num_vertices-1,
+                                ((i+2)*num_vertices-1)%(nperfiles*num_vertices),
+                                index_bottom));
+   }
+
 }
