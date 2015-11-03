@@ -62,7 +62,7 @@ bool P2_FGE_PulsarTeclaNormal(unsigned char tecla){
 	  	objeto_activo_2 = (objeto_activo_2+1)%figuras.size();
       return true;
 	}
-
+   
 	return false;
 }
 

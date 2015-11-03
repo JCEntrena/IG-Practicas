@@ -237,8 +237,7 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
 {
 
    bool redibujar = true ; // true si al acabar de procesar el evento resulta que es necesario redibujar
-   switch (toupper(tecla))
-   {
+   switch (toupper(tecla)){
       case 'Q' :
          exit( 0 );
          break ;
@@ -261,9 +260,9 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
          modo_vis = (modo_vis+1)%4;
          break;
       default:
+         // Vemos si la práctica activa usa la tecla que hemos pulsado.
          redibujar = false ;
-         switch( practica_actual )
-         { 
+         switch( practica_actual ){
             case 1 :
                redibujar = P1_FGE_PulsarTeclaNormal(tecla) ; // true si es necesario redibujar
                break ;
@@ -290,13 +289,11 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
 //       x_raton, y_raton : posición del ratón al pulsar
 
 
-void FGE_PulsarTeclaEspecial( int tecla, int x_raton, int y_raton )
-{
+void FGE_PulsarTeclaEspecial( int tecla, int x_raton, int y_raton ){
    bool redisp = true ;
    const float da = 5.0 ; // incremento en grados de ángulos de camara
 
-   switch ( tecla )
-   {
+   switch ( tecla ){
       case GLUT_KEY_LEFT:
          camara_angulo_y = camara_angulo_y - da ;
          break;
@@ -319,7 +316,7 @@ void FGE_PulsarTeclaEspecial( int tecla, int x_raton, int y_raton )
          redisp = false ;
          break ;
 	}
-   using namespace std ;
+
 
    // si se ha cambiado algo, forzar evento de redibujado
    if ( redisp )
@@ -374,8 +371,7 @@ void Inicializa_GLUT( int argc, char * argv[] )
 // ---------------------------------------------------------------------
 // Inicialización de las variables globales del programa
 
-void Inicializa_Vars( )
-{
+void Inicializa_Vars( ){
    // inicializar parámetros del frustum
    frustum_dis_del         = 0.1 ;
    frustum_dis_tra         = 10.0;
@@ -394,8 +390,7 @@ void Inicializa_Vars( )
 // ---------------------------------------------------------------------
 // inicialización de OpenGL
 
-void Inicializa_OpenGL( )
-{
+void Inicializa_OpenGL( ){
    // borrar posibles errores anteriores
    CError();
 
@@ -425,7 +420,6 @@ void Inicializa_OpenGL( )
    FijarCamara() ;
 
    // imprimir datos del hardware y la implementación de OpenGL
-   using namespace std ;
    cout  << "Datos de versión e implementación de OpenGL" << endl
          << "  implementación de : " << glGetString(GL_VENDOR)  << endl
          << "  hardware          : " << glGetString(GL_RENDERER) << endl
@@ -467,13 +461,12 @@ void Inicializar( int argc, char *argv[] )
 
 int main( int argc, char *argv[] )
 {
-   // incializar el programa
+   // Inicializar el programa
    Inicializar( argc, argv ) ;
 
-   // llamar al bucle de gestión de eventos de glut, tiene el
+   // Llamar al bucle de gestión de eventos de glut, tiene el
    // control hasta el final de la aplicación
    glutMainLoop();
 
-   // ya está
    return 0;
 }

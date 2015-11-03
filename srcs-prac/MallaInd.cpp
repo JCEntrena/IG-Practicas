@@ -7,21 +7,22 @@ void MallaInd::visualizar(unsigned modo_vis){
     glVertexPointer(3, GL_FLOAT, 0, &vertices.front());
 
     switch(modo_vis){
-        case 0: // Puntos.
+        case 0: // Modo puntos.
             glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
             glDrawElements(GL_TRIANGLES, indices.size()*3, GL_UNSIGNED_INT, &indices.front());
         break;
-        case 1: // Aristas.
+        case 1: // Modo aristas.
             glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
             glDrawElements(GL_TRIANGLES, indices.size()*3, GL_UNSIGNED_INT, &indices.front());
         break;
-        case 2: // Sólido.
+        case 2: // Modo sólido.
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
             glDrawElements(GL_TRIANGLES, indices.size()*3, GL_UNSIGNED_INT, &indices.front());
         break;
-        case 3: // Ajedrez.
+        case 3: // Modo ajedrez (alterna dos colores).
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
             for (int i = 0; i < indices.size(); i++){
+               // Alternamos entre negro y azul.
                 glColor3f(0,0,i%2);
                 glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, &indices[i]);
             }
@@ -46,12 +47,13 @@ MallaPLY::MallaPLY(const char* nombre_archivo){
    // Creamos los vectores de Tuplas a partir de lo obtenido.
    for (int i = 0; i < vertex_aux.size(); i = i+3)
       vertices.push_back(Tupla3f(vertex_aux.at(i), vertex_aux.at(i+1), vertex_aux.at(i+2)));
-
+   // De igual forma para los índices.
    for (int i = 0; i < index_aux.size(); i = i+3)
       indices.push_back(Tupla3i(index_aux.at(i), index_aux.at(i+1), index_aux.at(i+2)));
 }
 
 // Constructor para las mallas indexadas a partir de la revolución de una polilínea.
+// IMPORTANTE: Se supone que el primer y el último punto representan el extremo inferior y superior.
 MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
    // Definición del ángulo.
    const double PI = 3.1415926536;
@@ -72,9 +74,10 @@ MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
    for (int i = 0; i < vertex_aux.size(); i = i+3){
       vertices.push_back(Tupla3f(vertex_aux.at(i), vertex_aux.at(i+1), vertex_aux.at(i+2)));
    }
-
+   // Guardamos el número de vértices, que tendremos que usar en los bucles posteriores.
    int num_vertices = vertices.size();
-   // Puntos de las bases superior e inferior.
+
+   // Puntos de las bases superior e inferior, para las tapas.
    float top = vertices.front()(1);
    float bottom = vertices.back()(1);
 
@@ -120,5 +123,4 @@ MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
                                 ((i+2)*num_vertices-1)%(nperfiles*num_vertices),
                                 index_bottom));
    }
-
 }
