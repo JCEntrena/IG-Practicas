@@ -124,3 +124,32 @@ MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
                                 index_bottom));
    }
 }
+
+MallaBarrido::MallaBarrido(const char* nombre_archivo, float x, float y, float z, unsigned nperfiles){
+   Tupla3f traslacion(x,y,z);
+   // Estructuras auxiliares para la lectura.
+   std::vector<float> vertex_aux;
+   // Lectura
+   ply::read_vertices(nombre_archivo, vertex_aux);
+
+   // Creamos los vectores de Tuplas a partir de lo obtenido.
+   for (int i = 0; i < vertex_aux.size(); i = i+3)
+      vertices.push_back(Tupla3f(vertex_aux.at(i), vertex_aux.at(i+1), vertex_aux.at(i+2)));
+
+   int num_vertices = vertices.size();
+
+   // Añadimos el resto de vértices.
+   for (int i = 1; i < nperfiles; i++)
+      for (int j = 0; j < num_vertices; j++)
+         vertices.push_back(vertices.at(vertices.size() - num_vertices) + traslacion);
+
+   // Añadimos los índices que unen cada traslación.
+   for (int i = 0; i < nperfiles - 1; i++){
+      for (int j = 0; j < num_vertices - 1; j++){
+         // Triángulo (0,1,n)
+         indices.push_back(Tupla3i(i*num_vertices+j, i*num_vertices+(j+1), (i+1)*num_vertices+j));
+         // Triángulo (1,n,n+1)
+         indices.push_back(Tupla3i(i*num_vertices+((j+1)%num_vertices), (i+1)*num_vertices+j, (i+1)*num_vertices+(j+1)));
+      }
+   }
+}

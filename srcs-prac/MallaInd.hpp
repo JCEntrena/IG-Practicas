@@ -36,4 +36,16 @@ class MallaRevol : public MallaInd{
    MallaRevol(const char* nombre_archivo, unsigned nperfiles);
 };
 
+// Clase para mallas indexadas obtenidas de un PLY.
+// Generadas por barrido, dado un contorno cerrado y un vector de traslación.
+class MallaBarrido : public MallaInd{
+   public:
+   // Constructor
+   // Recibe como parámetros:
+   // - El nombre del archivo PLY.
+   // - Tres flotantes, indicando el vector (x,y,z) de desplazamiento.
+   // - El número de copias por barrido.
+   MallaBarrido(const char* nombre_archivo, float x, float y, float z, unsigned nperfiles);
+}; 
+
 #endif
