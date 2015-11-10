@@ -29,23 +29,23 @@ void P2_Inicializar( int argc, char *argv[] ){
    if (argc < 2){
       figuras.push_back(MallaPLY("../plys/beethoven.ply"));
       figuras.push_back(MallaRevol("../plys/peon.ply", 3));
-      figuras.push_back(MallaBarrido("../plys/cerrado.ply", 1, 1, 1, 3));
+      figuras.push_back(MallaBarrido("../plys/peon.ply", 1, 1, 1, 3));
    }
    // Se proporciona un PLY
    else if (argc == 2){
       figuras.push_back(MallaPLY(argv[1]));
       figuras.push_back(MallaRevol("../plys/peon.ply", 3));
-      figuras.push_back(MallaBarrido("../plys/cerrado.ply", 1, 1, 1, 3));
+      figuras.push_back(MallaBarrido("../plys/peon.ply", 1, 1, 1, 3));
    }
    // Se da un PLY y una MallaRevol y el número de perfiles.
    else if (argc == 4){
       int n1 = atoi(argv[3]);
       figuras.push_back(MallaPLY(argv[1]));
       figuras.push_back(MallaRevol(argv[2], n1));
-      figuras.push_back(MallaBarrido("../plys/cerrado.ply", 1, 1, 1, 3));
+      figuras.push_back(MallaBarrido("../plys/peon.ply", 1, 1, 1, 3));
    }
    // Se dan un PLY, una MallaRevol con número de perfiles y una MallaBarrido con vector de desplazamiento y número de desplazamientos.
-   else if (argc == 8){
+   else if (argc == 9){
       int n1 = atoi(argv[3]);
       int n2 = atoi(argv[8]);
       int x = atoi(argv[5]), y = atoi(argv[6]), z = atoi(argv[7]);
