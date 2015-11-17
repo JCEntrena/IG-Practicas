@@ -46,6 +46,6 @@ class MallaBarrido : public MallaInd{
    // - Tres flotantes, indicando el vector (x,y,z) de desplazamiento.
    // - El número de copias por barrido.
    MallaBarrido(const char* nombre_archivo, float x, float y, float z, unsigned nperfiles);
-}; 
+};
 
 #endif
