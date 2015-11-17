@@ -21,6 +21,7 @@
 // includes de archivos en el directorio de trabajo (de las prácticas)
 #include "practica1.hpp"
 #include "practica2.hpp"
+#include "practica3.hpp"
 
 // evita la necesidad de escribir std::
 using namespace std ;
@@ -182,6 +183,8 @@ void DibujarObjetos()
       case 2 :
          P2_DibujarObjetos(modo_vis);
          break;
+      case 3 :
+         P3_DibujarObjetos(modo_vis);
       default :
          cout << "El valor de 'practica_actual' (" << practica_actual  << ") es incorrecto" << endl ;
          break;
@@ -268,6 +271,10 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
                break ;
             case 2 :
                redibujar = P2_FGE_PulsarTeclaNormal(tecla);
+               break;
+            case 3 :
+               redibujar = P3_FGE_PulsarTeclaNormal(tecla);
+               break;
             default :
                redibujar = false ; // la tecla no es de la práctica activa (no es necesario redibujar)
          }
@@ -446,10 +453,13 @@ void Inicializar( int argc, char *argv[] )
    Inicializa_OpenGL() ;
 
    // Inicializar práctica 1.
-   P1_Inicializar( argc, argv ) ;
+   P1_Inicializar(argc, argv);
 
    // Inicializar práctica 2.
    P2_Inicializar(argc, argv);
+
+   // Inicializar práctica 3.
+   P3_Inicializar(argc, argv);
 }
 
 // *********************************************************************
@@ -462,7 +472,7 @@ void Inicializar( int argc, char *argv[] )
 int main( int argc, char *argv[] )
 {
    // Inicializar el programa
-   Inicializar( argc, argv ) ;
+   Inicializar(argc, argv);
 
    // Llamar al bucle de gestión de eventos de glut, tiene el
    // control hasta el final de la aplicación
