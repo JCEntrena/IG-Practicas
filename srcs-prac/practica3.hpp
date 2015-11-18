@@ -9,6 +9,7 @@
 #define IG_PRACTICA3_HPP
 
 #include "MallaInd.hpp"
+#include "matrizg.hpp"
 
 void P3_Inicializar( int argc, char *argv[] ) ;
 bool P3_FGE_PulsarTeclaNormal(  unsigned char tecla ) ;
