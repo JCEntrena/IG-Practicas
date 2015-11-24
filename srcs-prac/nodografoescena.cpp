@@ -2,8 +2,55 @@
 // **
 // ** Informática Gráfica, curso 2015-16
 // ** Práctica 3  (implementación)
-// ** Implementación de la clase NodoGrafoEscena
+// ** Implementación de la clase NodoGrafoEscena y el struct.
 // **
 // *********************************************************************
 
 #include "nodografoescena.hpp"
+
+// Constructores de EntradaNGE
+
+// Constructor con un Objeto3D.
+EntradaNGE::EntradaNGE(Objeto3D * pObjeto){
+   tipoE = 0;
+   objeto = pObjeto;
+}
+
+// Constructor con una matriz.
+EntradaNGE::EntradaNGE(const Matriz4f & pMatriz){
+   tipoE = 1;
+   matriz = new Matriz4f(pMatriz);
+}
+
+// --------------------------------------------------------
+// Clase NodoGrafoEscena
+
+// Método de visualizado. Llama al método definido en Objeto3D.
+void NodoGrafoEscena::visualizar(unsigned cv){
+   glMatrixMode(GL_MODELVIEW);
+   glPushMatrix();
+
+   // Recorre todas las entradas del array que hay en el nodo.
+   int tamanio = entradas.size();
+   for (unsigned i = 0; i < tamanio; i++){
+      if (entradas[i].tipoE == 0)
+         entradas[i].objeto->visualizar(cv);
+      else
+         glMultMatrixf(*(entradas[i].matriz));
+   }
+
+   glMatrixMode(GL_MODELVIEW);
+   glPopMatrix();
+}
+
+void NodoGrafoEscena::agregar(EntradaNGE * entrada){
+
+}
+
+void NodoGrafoEscena::agregar(Objeto3D * pObjeto){
+
+}
+
+void NodoGrafoEscena::agregar(const Matriz4f & pMatriz){
+
+}
