@@ -44,13 +44,15 @@ void NodoGrafoEscena::visualizar(unsigned cv){
 }
 
 void NodoGrafoEscena::agregar(EntradaNGE * entrada){
-
+   entradas.push_back(*entrada);
 }
 
 void NodoGrafoEscena::agregar(Objeto3D * pObjeto){
-
+   EntradaNGE nueva(pObjeto);
+   entradas.push_back(nueva);
 }
 
 void NodoGrafoEscena::agregar(const Matriz4f & pMatriz){
-
+   EntradaNGE nueva(pMatriz);
+   entradas.push_back(nueva);
 }
