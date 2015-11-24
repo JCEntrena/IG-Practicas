@@ -17,10 +17,10 @@ using namespace std;
 // ---------------------------------------------------
 // Estructura de entrada del nodo del grafo de escena.
 struct EntradaNGE{
-   unsigned char tipoE;  // 0 = objeto. 1 = transformación.
+   unsigned char tipoE;  // 0 = objeto. 1 = transformación (matriz).
    union{
       Objeto3D * objeto; // Puntero a un objeto.
-      Matriz4f * matriz; // Puntero a una matriz 4x4 (transformación).
+      Matriz4f * matriz; // Puntero a una matriz 4x4, que representa una transformación.
    };
 
    // Constructores
