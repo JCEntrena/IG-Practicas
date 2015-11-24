@@ -34,10 +34,10 @@ class NodoGrafoEscena : public Objeto3D{
       vector<EntradaNGE> entradas;
    public:
       // Método de visualizado.
-      virtual void visualizar(ContextoVis & cv);
+      virtual void visualizar(unsigned cv);
       // Añadir una entrada genérica.
       void agregar(EntradaNGE * entrada);
       // Construir una entrada y añadirla.
       void agregar(Objeto3D * pObjeto);
-      void agregar(const Matriz4f & pMatriz); 
+      void agregar(const Matriz4f & pMatriz);
 }
