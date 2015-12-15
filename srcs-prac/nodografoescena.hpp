@@ -40,4 +40,4 @@ class NodoGrafoEscena : public Objeto3D{
       // Construir una entrada y añadirla.
       void agregar(Objeto3D * pObjeto);
       void agregar(const Matriz4f & pMatriz);
-}
+};
