@@ -25,7 +25,7 @@ std::vector<MallaInd> fig;
 
 void P1_Inicializar( int argc, char *argv[] ){
 
-   Cubo cubo;
+   Cubo1 cubo;
    Tetraedro tetraedro;
    fig.push_back(cubo);
 	fig.push_back(tetraedro);

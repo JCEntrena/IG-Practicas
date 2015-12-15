@@ -252,7 +252,7 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
          break;
       // Cambios entre prácticas.
       case 'P':
-         if (practica_actual >= 2)
+         if (practica_actual >= 3)
             practica_actual = 1;
          else
             practica_actual++;
