@@ -32,7 +32,7 @@ class Cubo : public NodoGrafoEscena{
 class Brazo : public NodoGrafoEscena{
    public:
       Brazo(){
-         agregar(MAT_Escalado(1.2, 1.0, 2.5));
+         agregar(MAT_Escalado(0.6, 1.25, 0.5));
          agregar(new Cubo());
       }
 };
@@ -40,8 +40,8 @@ class Brazo : public NodoGrafoEscena{
 class BrazoDerecho : public NodoGrafoEscena{
    public:
       BrazoDerecho(){
-         agregar(MAT_Traslacion(3.1, 0.0, 4.5));
-         agregar(MAT_Rotacion(0, 0, 1, 0));
+         agregar(MAT_Traslacion(1.55, 2.25, 0.0));
+         agregar(MAT_Rotacion(0, 0, 0, 1));
          agregar(new Brazo());
       }
       void rotar(bool sentido_horario){
@@ -52,8 +52,8 @@ class BrazoDerecho : public NodoGrafoEscena{
 class BrazoIzquierdo : public NodoGrafoEscena{
    public:
       BrazoIzquierdo(){
-         agregar(MAT_Traslacion(-1.3, 0.0, 4.5));
-         agregar(MAT_Rotacion(0, 0, 1, 0));
+         agregar(MAT_Traslacion(-0.65, 2.25, 0.0));
+         agregar(MAT_Rotacion(0, 0, 0, 1));
          agregar(new Brazo());
       }
 };
@@ -61,8 +61,8 @@ class BrazoIzquierdo : public NodoGrafoEscena{
 class PiernaIzquierda : public NodoGrafoEscena{
    public:
       PiernaIzquierda(){
-         agregar(MAT_Escalado(1.2, 1.0, 2.9));
-         agregar(MAT_Rotacion(0, 0, 1, 0));
+         agregar(MAT_Escalado(0.6, 1.45, 0.5));
+         agregar(MAT_Rotacion(0, 0, 0, 1));
          agregar(new Cubo());
       }
 
@@ -71,8 +71,7 @@ class PiernaIzquierda : public NodoGrafoEscena{
 class Cabeza : public NodoGrafoEscena{
    public:
        Cabeza(){
-          agregar(MAT_Escalado(2, 2, 2));
-          agregar(MAT_Traslacion(0.5, -0.5, 8.1));
+          agregar(MAT_Traslacion(0.25, 4.05, -0.25));
           agregar(new Cubo());
        }
 };
@@ -80,8 +79,8 @@ class Cabeza : public NodoGrafoEscena{
 class Tronco : public NodoGrafoEscena{
    public:
       Tronco(){
-         agregar(MAT_Escalado(3.0, 3.0, 5.0));
-         agregar(MAT_Traslacion(0.0, -1.0, 3.0));
+         agregar(MAT_Escalado(1.5, 2.5, 1.5));
+         agregar(MAT_Traslacion(0.0, 1.5, -0.5));
          agregar(new Cubo());
       }
 };
@@ -92,21 +91,20 @@ class Caja : public NodoGrafoEscena{
    public:
       Caja(){
          desplazamiento = 0;
-         agregar(MAT_Escalado(2.0, 2.0, 2.0));
-         agregar(MAT_Traslacion(-0.4, 1.2, 0.0));
+         agregar(MAT_Traslacion(-0.2, 0.0, 0.6));
          agregar(MAT_Traslacion(0.0, 0.0, 0.0));
          agregar(new Cubo());
       }
       void desplazar_adelante(){
          if (desplazamiento < 10){
             desplazamiento++;
-            entradas[2] = MAT_Traslacion(0.0, desplazamiento, 0.0);
+            entradas[2] = MAT_Traslacion(0.0, 0.0, desplazamiento);
          }
       }
       void desplazar_atras(){
          if (desplazamiento > 0){
             desplazamiento--;
-            entradas[2] = (MAT_Traslacion(0.0, desplazamiento, 0.0));
+            entradas[2] = (MAT_Traslacion(0.0, 0.0, desplazamiento));
          }
       }
 };
