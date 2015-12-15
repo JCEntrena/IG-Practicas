@@ -24,7 +24,7 @@ void P3_DibujarObjetos( unsigned modo ) ;
 class Cubo : public NodoGrafoEscena{
    public:
       Cubo(){
-         MallaPLY *cubo = new MallaPLY("../plys/beethoven.ply");
+         MallaPLY *cubo = new MallaPLY("../plys/cube.ply");
          agregar(cubo);
       }
 };
@@ -60,7 +60,7 @@ class BrazoIzquierdo : public NodoGrafoEscena{
 
 class PiernaIzquierda : public NodoGrafoEscena{
    public:
-      Pierna(){
+      PiernaIzquierda(){
          agregar(MAT_Escalado(1.2, 1.0, 2.9));
          agregar(MAT_Rotacion(0, 0, 1, 0));
          agregar(new Cubo());
@@ -71,7 +71,7 @@ class PiernaIzquierda : public NodoGrafoEscena{
 class Cabeza : public NodoGrafoEscena{
    public:
        Cabeza(){
-          agregar(MAT_Escalado(2, 2, 2))
+          agregar(MAT_Escalado(2, 2, 2));
           agregar(MAT_Traslacion(0.5, -0.5, 8.1));
           agregar(new Cubo());
        }

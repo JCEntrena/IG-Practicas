@@ -18,7 +18,7 @@ unsigned grados_libertad = 3;
 // ---------------------------------------------------------------------
 // Declaraciones de estructuras de datos...
 
-std::vector<MallaInd> figur;
+std::vector<NodoGrafoEscena> figur;
 
 // ---------------------------------------------------------------------
 // Función para implementar en la práctica para inicialización.
@@ -26,7 +26,7 @@ std::vector<MallaInd> figur;
 // inicializado OpenGL.
 
 void P3_Inicializar( int argc, char *argv[] ){
-
+   figur.push_back(Cabeza());
 }
 
 // ---------------------------------------------------------------------
@@ -63,5 +63,5 @@ bool P3_FGE_PulsarTeclaNormal(unsigned char tecla){
 // Función para dibujar los objetos, implementada en MallaInd.
 
 void P3_DibujarObjetos(unsigned modo){
-   //figur.at(objeto_activo_3).visualizar(modo);
+   figur.at(objeto_activo_3).visualizar(modo);
 }
