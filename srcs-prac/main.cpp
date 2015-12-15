@@ -185,6 +185,7 @@ void DibujarObjetos()
          break;
       case 3 :
          P3_DibujarObjetos(modo_vis);
+         break; 
       default :
          cout << "El valor de 'practica_actual' (" << practica_actual  << ") es incorrecto" << endl ;
          break;
@@ -390,7 +391,7 @@ void Inicializa_Vars( ){
    camara_angulo_y = 0.0 ;
 
    // inicializar práctica actual y modo de visualización inicial
-   practica_actual = 2 ;
+   practica_actual = 1 ;
    modo_vis = 0 ;
 }
 
