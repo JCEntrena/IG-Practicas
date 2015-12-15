@@ -12,22 +12,22 @@
 
 void P1_Inicializar( int argc, char *argv[] ) ;
 bool P1_FGE_PulsarTeclaNormal(  unsigned char tecla ) ;
-void P1_DibujarObjetos( unsigned modo ) ; 
+void P1_DibujarObjetos( unsigned modo ) ;
 
 
-class Cubo : public MallaInd{
+class Cubo1 : public MallaInd{
 
 public:
-    Cubo();  // crea las tablas del cubo, y le da nombre.
+    Cubo1();  // crea las tablas del cubo, y le da nombre.
 
-}; 
+};
 
 
 class Tetraedro : public MallaInd{
-   
+
 public:
     Tetraedro() ;  // crea las tablas del tetraedro, y le da nombre.
 
-}; 
+};
 
 #endif

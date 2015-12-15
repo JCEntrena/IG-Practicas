@@ -66,7 +66,7 @@ void P1_DibujarObjetos(unsigned modo){
 //----------------------------------------------------------------------
 // Constructores para el Cubo y el Tetraedro.
 
-Cubo::Cubo(){
+Cubo1::Cubo1(){
     // Inclusión de los vértices.
     vertices.push_back(Tupla3f(1,0,0));
     vertices.push_back(Tupla3f(1,1,0));
