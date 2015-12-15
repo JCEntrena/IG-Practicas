@@ -13,6 +13,7 @@
 
 unsigned objeto_activo_3 = 0 ; // Objeto activo
 unsigned p3_grado_libertad_activo = 0; // Grado de libertad activo
+unsigned grados_libertad = 3;
 
 // ---------------------------------------------------------------------
 // Declaraciones de estructuras de datos...
@@ -45,7 +46,7 @@ bool P3_FGE_PulsarTeclaNormal(unsigned char tecla){
 	  	   objeto_activo_3 = (objeto_activo_3+1)%figur.size();
          return true;
       case 'G' :
-         p3_grado_libertad_activo = (p3_grado_libertad_activo+1)%3;
+         p3_grado_libertad_activo = (p3_grado_libertad_activo+1)%grados_libertad;
 	      return true;
       case '<' :
          // ...
@@ -62,5 +63,5 @@ bool P3_FGE_PulsarTeclaNormal(unsigned char tecla){
 // Función para dibujar los objetos, implementada en MallaInd.
 
 void P3_DibujarObjetos(unsigned modo){
-   figur.at(objeto_activo_3).visualizar(modo);
+   //figur.at(objeto_activo_3).visualizar(modo);
 }
