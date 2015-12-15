@@ -39,6 +39,42 @@ void P3_Inicializar( int argc, char *argv[] ){
 //  - devuelve 'false' si la tecla no se usa en esta práctica (no ha
 //    cambiado nada)
 
+
+// Función para aumentar el grado de libertad activo. Se llama al pulsar ">"
+void aumenta(){
+   switch (p3_grado_libertad_activo){
+      case 0:
+
+         break;
+      case 1:
+
+         break;
+      case 2:
+
+         break;
+      default: break;
+   }
+
+}
+
+// Función para aumentar el grado de libertad activo. Se llama al pulsar "<"
+void disminuye(){
+   switch (p3_grado_libertad_activo){
+      case 0:
+
+         break;
+      case 1:
+
+         break;
+      case 2:
+
+         break;
+      default: break;
+   }
+
+}
+
+
 bool P3_FGE_PulsarTeclaNormal(unsigned char tecla){
 
    switch (toupper(tecla)){
@@ -49,10 +85,10 @@ bool P3_FGE_PulsarTeclaNormal(unsigned char tecla){
          p3_grado_libertad_activo = (p3_grado_libertad_activo+1)%grados_libertad;
 	      return true;
       case '<' :
-         // ...
+         disminuye();
          return true;
       case '>' :
-         // ...
+         aumenta();
          return true;
       default :
 	     return false;

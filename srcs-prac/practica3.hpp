@@ -39,33 +39,107 @@ class Brazo : public NodoGrafoEscena{
 
 class BrazoDerecho : public NodoGrafoEscena{
    public:
+      int rotacion;
+      
       BrazoDerecho(){
+         rotacion = 0;
          agregar(MAT_Traslacion(1.55, 2.25, 0.0));
          agregar(MAT_Rotacion(0, 0, 0, 1));
          agregar(new Brazo());
       }
-      void rotar(bool sentido_horario){
 
+      // Función de rotación del brazo. Rotará libremente con incrementos de 10º, partiendo desde 0º.
+      void rotar(bool sentido_horario){
+         // Si es en sentido horario:
+         if (sentido_horario)
+            rotacion--;
+         // En otro caso, sentido antihorario.
+         else
+            rotacion++;
+
+         entradas[1] = MAT_Rotacion((rotacion%36)*10, 0, 0, 1);
       }
 };
 
 class BrazoIzquierdo : public NodoGrafoEscena{
    public:
+      int rotacion;
+
       BrazoIzquierdo(){
+         rotacion = 0;
          agregar(MAT_Traslacion(-0.65, 2.25, 0.0));
          agregar(MAT_Rotacion(0, 0, 0, 1));
          agregar(new Brazo());
+      }
+
+      // Función de rotación del brazo. Rotará libremente con incrementos de 10º, partiendo desde 0º.
+      void rotar(bool sentido_horario){
+         // Si es en sentido horario:
+         if (sentido_horario)
+            rotacion--;
+         // En otro caso, sentido antihorario.
+         else
+            rotacion++;
+
+         entradas[1] = MAT_Rotacion((rotacion%36)*10, 0, 0, 1);
       }
 };
 
 class PiernaIzquierda : public NodoGrafoEscena{
    public:
+      int rotacion;   // Ángulo de rotación.
+
       PiernaIzquierda(){
+         rotacion = 0;
          agregar(MAT_Escalado(0.6, 1.45, 0.5));
          agregar(MAT_Rotacion(0, 0, 0, 1));
          agregar(new Cubo());
       }
 
+      // Función de rotación. Permitimos que la pierna rote de -60º a 60º, partiendo desde 0º.
+      // El incremento será de 10º tanto positivo como negativo.
+      void rotar(bool sentido_horario){
+         // Sentido horario.
+         if (sentido_horario){
+            if (rotacion > -6)
+               rotacion--;
+
+         // En otro caso, sentido antihorario.
+         else
+            if (rotacion < 6)
+               rotacion++;
+
+         entradas[1] = MAT_Rotacion((rotacion%36)*10, 0, 0, 1);
+      }
+
+};
+
+class PiernaDerecha : public NodoGrafoEscena{
+   public:
+      int rotacion;  // Ángulo de rotación.
+
+      PiernaDerecha(){
+         rotacion = 0;
+         agregar(MAT_Traslacion(0.9, 0, 0));
+         agregar(MAT_Rotacion(0, 0, 0, 1));
+         agregar(new PiernaIzquierda());
+      }
+
+      // Función de rotación. Permitimos que la pierna rote de -60º a 60º, partiendo desde 0º.
+      // El incremento será de 10º tanto positivo como negativo.
+      void rotar(bool sentido_horario){
+         // Sentido horario.
+         if (sentido_horario){
+            if (rotacion > -6)
+               rotacion--;
+
+         // En otro caso, sentido antihorario.
+         else
+            if (rotacion < 6)
+               rotacion++;
+
+         entradas[1] = MAT_Rotacion((rotacion%36)*10, 0, 0, 1);
+      }
 };
 
 class Cabeza : public NodoGrafoEscena{
@@ -90,21 +164,26 @@ class Caja : public NodoGrafoEscena{
       int desplazamiento;
    public:
       Caja(){
-         desplazamiento = 0;
+         desplazamiento = 0;           // Al principio la caja no está desplazada.
          agregar(MAT_Traslacion(-0.2, 0.0, 0.6));
          agregar(MAT_Traslacion(0.0, 0.0, 0.0));
          agregar(new Cubo());
       }
+
+      // Función que desplaza la caja hacia adelante.
+      // No permitimos que el número de desplazamientos sea mayor que 10.
       void desplazar_adelante(){
          if (desplazamiento < 10){
             desplazamiento++;
-            entradas[2] = MAT_Traslacion(0.0, 0.0, desplazamiento);
+            entradas[2] = MAT_Traslacion(0.0, 0.0, desplazamiento/4);
          }
       }
+
+      // Función que desplaza la caja hacia atrás. No permitimos desplazamientos negativos.
       void desplazar_atras(){
          if (desplazamiento > 0){
             desplazamiento--;
-            entradas[2] = (MAT_Traslacion(0.0, 0.0, desplazamiento));
+            entradas[2] = (MAT_Traslacion(0.0, 0.0, desplazamiento/4));
          }
       }
 };
