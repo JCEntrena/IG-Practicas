@@ -178,14 +178,14 @@ void DibujarObjetos()
    switch( practica_actual )
    {
       case 1 :
-         P1_DibujarObjetos(modo_vis); // definido en 'practica1.hpp'
+         P1_DibujarObjetos(modo_vis);
          break;
       case 2 :
          P2_DibujarObjetos(modo_vis);
          break;
       case 3 :
          P3_DibujarObjetos(modo_vis);
-         break; 
+         break;
       default :
          cout << "El valor de 'practica_actual' (" << practica_actual  << ") es incorrecto" << endl ;
          break;
@@ -281,8 +281,6 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
          }
          break ;
    }
-   using namespace std ;
-   //cout << "tecla normal....." << frustum_factor_escala << endl ;
 
    // si se ha cambiado algo, forzar evento de redibujado
    if (redibujar)
