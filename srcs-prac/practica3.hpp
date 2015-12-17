@@ -44,7 +44,7 @@ class BrazoDerecho : public NodoGrafoEscena{
       BrazoDerecho(){
          rotacion = 0;
          agregar(MAT_Traslacion(1.55, 2.25, 0.0));
-         agregar(MAT_Rotacion(0, 0, 0, 1));
+         agregar(MAT_Rotacion(0, 0, 0, 0));
          agregar(new Brazo());
       }
 
@@ -57,7 +57,7 @@ class BrazoDerecho : public NodoGrafoEscena{
          else
             rotacion++;
 
-         entradas[1] = MAT_Rotacion((rotacion%36)*10, 0, 0, 1);
+         entradas[1] = MAT_Rotacion((rotacion%36)*10, 1, 0, 0);
       }
 };
 
@@ -68,7 +68,7 @@ class BrazoIzquierdo : public NodoGrafoEscena{
       BrazoIzquierdo(){
          rotacion = 0;
          agregar(MAT_Traslacion(-0.65, 2.25, 0.0));
-         agregar(MAT_Rotacion(0, 0, 0, 1));
+         agregar(MAT_Rotacion(0, 0, 0, 0));
          agregar(new Brazo());
       }
 
@@ -81,7 +81,7 @@ class BrazoIzquierdo : public NodoGrafoEscena{
          else
             rotacion++;
 
-         entradas[1] = MAT_Rotacion((rotacion%36)*10, 0, 0, 1);
+         entradas[1] = MAT_Rotacion((rotacion%36)*10, 1, 0, 0);
       }
 };
 
@@ -92,7 +92,7 @@ class PiernaIzquierda : public NodoGrafoEscena{
       PiernaIzquierda(){
          rotacion = 0;
          agregar(MAT_Escalado(0.6, 1.45, 0.5));
-         agregar(MAT_Rotacion(0, 0, 0, 1));
+         agregar(MAT_Rotacion(0, 0, 0, 0));
          agregar(new Cubo());
       }
 
@@ -110,7 +110,7 @@ class PiernaIzquierda : public NodoGrafoEscena{
             if (rotacion < 6)
                rotacion++;
 
-         entradas[1] = MAT_Rotacion((rotacion%36)*10, 0, 0, 1);
+         entradas[1] = MAT_Rotacion((rotacion%36)*10, 1, 0, 0);
       }
 
 };
@@ -122,7 +122,7 @@ class PiernaDerecha : public NodoGrafoEscena{
       PiernaDerecha(){
          rotacion = 0;
          agregar(MAT_Traslacion(0.9, 0, 0));
-         agregar(MAT_Rotacion(0, 0, 0, 1));
+         agregar(MAT_Rotacion(0, 0, 0, 0));
          agregar(new PiernaIzquierda());
       }
 
@@ -139,7 +139,7 @@ class PiernaDerecha : public NodoGrafoEscena{
             if (rotacion < 6)
                rotacion++;
 
-         entradas[1] = MAT_Rotacion((rotacion%36)*10, 0, 0, 1);
+         entradas[1] = MAT_Rotacion((rotacion%36)*10, 1, 0, 0);
       }
 };
 
