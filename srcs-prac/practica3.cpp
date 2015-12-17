@@ -11,6 +11,8 @@
 #include <string>
 #include <stdio.h>
 
+using namespace std;
+
 unsigned objeto_activo_3 = 0 ; // Objeto activo
 unsigned p3_grado_libertad_activo = 0; // Grado de libertad activo
 unsigned grados_libertad = 3;
@@ -82,6 +84,18 @@ bool P3_FGE_PulsarTeclaNormal(unsigned char tecla){
          //return true;
       case 'G' :
          p3_grado_libertad_activo = (p3_grado_libertad_activo+1)%grados_libertad;
+         switch(p3_grado_libertad_activo){
+            case 0:
+               cout << "Grado de libertad 1: Rotación de los brazos." << endl;
+               break;
+            case 1:
+               cout << "Grado de libertad 2: Rotación de la pierna izquierda." << endl;
+               break;
+            case 2:
+               cout << "Grado de libertad 3: Movimiento de la caja." << endl;
+               break;
+            default: break;
+         }
 	      return true;
       case '<' :
          disminuye();
