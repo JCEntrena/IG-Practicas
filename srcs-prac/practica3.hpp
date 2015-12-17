@@ -40,7 +40,7 @@ class Brazo : public NodoGrafoEscena{
 class BrazoDerecho : public NodoGrafoEscena{
    public:
       int rotacion;
-      
+
       BrazoDerecho(){
          rotacion = 0;
          agregar(MAT_Traslacion(1.55, 2.25, 0.0));
@@ -87,7 +87,7 @@ class BrazoIzquierdo : public NodoGrafoEscena{
 
 class PiernaIzquierda : public NodoGrafoEscena{
    public:
-      int rotacion;   // Ángulo de rotación.
+      int rotacion;  // Ángulo de rotación.
 
       PiernaIzquierda(){
          rotacion = 0;
@@ -103,6 +103,7 @@ class PiernaIzquierda : public NodoGrafoEscena{
          if (sentido_horario){
             if (rotacion > -6)
                rotacion--;
+         }
 
          // En otro caso, sentido antihorario.
          else
@@ -129,7 +130,7 @@ class PiernaDerecha : public NodoGrafoEscena{
       // El incremento será de 10º tanto positivo como negativo.
       void rotar(bool sentido_horario){
          // Sentido horario.
-         if (sentido_horario){
+         if (sentido_horario)
             if (rotacion > -6)
                rotacion--;
 
@@ -153,8 +154,8 @@ class Cabeza : public NodoGrafoEscena{
 class Tronco : public NodoGrafoEscena{
    public:
       Tronco(){
-         agregar(MAT_Escalado(1.5, 2.5, 1.5));
          agregar(MAT_Traslacion(0.0, 1.5, -0.5));
+         agregar(MAT_Escalado(1.5, 2.5, 1.5));
          agregar(new Cubo());
       }
 };
@@ -185,6 +186,48 @@ class Caja : public NodoGrafoEscena{
             desplazamiento--;
             entradas[2] = (MAT_Traslacion(0.0, 0.0, desplazamiento/4));
          }
+      }
+};
+
+class Figura : public NodoGrafoEscena{
+   private:
+      Cabeza* cabeza;
+      BrazoIzquierdo* bi;
+      BrazoDerecho* bd;
+      PiernaDerecha* pd;
+      PiernaIzquierda* pi;
+      Tronco* tr;
+      Caja* cj;
+
+   public:
+      Figura(){
+         tr = new Tronco(); agregar(tr);
+         cabeza = new Cabeza(); agregar(cabeza);
+         bi = new BrazoIzquierdo(); agregar(bi);
+         bd = new BrazoDerecho(); agregar(bd);
+         pd = new PiernaDerecha(); agregar(pd);
+         pi = new PiernaIzquierda(); agregar(pi);
+         cj = new Caja(); agregar(cj);
+      }
+
+      void RotaBrazos(bool sentido_horario){
+         bi->rotar(sentido_horario);
+         bd->rotar(sentido_horario);
+      }
+
+      void RotaPiernaI(bool sentido_horario){
+         pi->rotar(sentido_horario);
+      }
+
+      void RotaPiernaD(bool sentido_horario){
+         pd->rotar(sentido_horario);
+      }
+
+      void MueveCaja(bool adelante){
+         if(adelante)
+            cj->desplazar_adelante();
+         else
+            cj->desplazar_atras();
       }
 };
 

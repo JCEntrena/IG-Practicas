@@ -26,7 +26,7 @@ std::vector<NodoGrafoEscena> figur;
 // inicializado OpenGL.
 
 void P3_Inicializar( int argc, char *argv[] ){
-   figur.push_back(Cabeza());
+   figur.push_back(Figura());
 }
 
 // ---------------------------------------------------------------------
