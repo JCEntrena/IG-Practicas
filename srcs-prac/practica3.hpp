@@ -166,7 +166,7 @@ class Caja : public NodoGrafoEscena{
    public:
       Caja(){
          desplazamiento = 0;           // Al principio la caja no está desplazada.
-         agregar(MAT_Traslacion(-0.2, 0.0, 0.6));
+         agregar(MAT_Traslacion(-0.2, 0.0, 1.2));
          agregar(MAT_Traslacion(0.0, 0.0, 0.0));
          agregar(new Cubo());
       }
@@ -176,7 +176,7 @@ class Caja : public NodoGrafoEscena{
       void desplazar_adelante(){
          if (desplazamiento < 10){
             desplazamiento++;
-            entradas[2] = MAT_Traslacion(0.0, 0.0, desplazamiento/4);
+            entradas[1] = MAT_Traslacion(0.0, 0.0, desplazamiento/4.0);
          }
       }
 
@@ -184,7 +184,7 @@ class Caja : public NodoGrafoEscena{
       void desplazar_atras(){
          if (desplazamiento > 0){
             desplazamiento--;
-            entradas[2] = (MAT_Traslacion(0.0, 0.0, desplazamiento/4));
+            entradas[1] = (MAT_Traslacion(0.0, 0.0, desplazamiento/4.0));
          }
       }
 };
