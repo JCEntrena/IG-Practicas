@@ -24,8 +24,7 @@
 #include "practica3.hpp"
 
 // evita la necesidad de escribir std::
-using namespace std ;
-
+using namespace std; 
 // *********************************************************************
 // **
 // ** Variables globales
@@ -204,7 +203,6 @@ void DibujarObjetos()
 
 void FGE_Redibujado()
 {
-   using namespace std ;
    //cout << "redibujado......" << endl << flush ;
    FijarViewportProyeccion() ; // necesario pues la escala puede cambiar
    FijarCamara();
@@ -300,8 +298,7 @@ void FGE_PulsarTeclaEspecial( int tecla, int x_raton, int y_raton ){
    const float da = 5.0 ; // incremento en grados de ángulos de camara
 
    switch ( tecla ){
-      case GLUT_KEY_LEFT:
-         camara_angulo_y = camara_angulo_y - da ;
+      case GLUT_KEY_LEFT:         camara_angulo_y = camara_angulo_y - da ;
          break;
       case GLUT_KEY_RIGHT:
          camara_angulo_y = camara_angulo_y + da ;
