@@ -18,7 +18,7 @@ unsigned grados_libertad = 3;
 // ---------------------------------------------------------------------
 // Declaraciones de estructuras de datos...
 
-std::vector<NodoGrafoEscena> figur;
+Figura* figur;
 
 // ---------------------------------------------------------------------
 // Función para implementar en la práctica para inicialización.
@@ -26,7 +26,7 @@ std::vector<NodoGrafoEscena> figur;
 // inicializado OpenGL.
 
 void P3_Inicializar( int argc, char *argv[] ){
-   figur.push_back(Figura());
+   figur = new Figura();
 }
 
 // ---------------------------------------------------------------------
@@ -43,14 +43,14 @@ void P3_Inicializar( int argc, char *argv[] ){
 // Función para aumentar el grado de libertad activo. Se llama al pulsar ">"
 void aumenta(){
    switch (p3_grado_libertad_activo){
-      case 0:
-
+      case 0:  // Mover los brazos.
+         figur->RotaBrazos(true);
          break;
-      case 1:
-
+      case 1:  // Mover la pierna izquierda.
+         figur->RotaPiernaI(true);
          break;
-      case 2:
-
+      case 2:  // Mover la caja.
+         figur->MueveCaja(true);
          break;
       default: break;
    }
@@ -61,13 +61,13 @@ void aumenta(){
 void disminuye(){
    switch (p3_grado_libertad_activo){
       case 0:
-
+         figur->RotaBrazos(false);
          break;
       case 1:
-
+         figur->RotaPiernaI(false);
          break;
       case 2:
-
+         figur->MueveCaja(false);
          break;
       default: break;
    }
@@ -78,9 +78,8 @@ void disminuye(){
 bool P3_FGE_PulsarTeclaNormal(unsigned char tecla){
 
    switch (toupper(tecla)){
-      case 'O' :
-	  	   objeto_activo_3 = (objeto_activo_3+1)%figur.size();
-         return true;
+      //case 'O' :
+         //return true;
       case 'G' :
          p3_grado_libertad_activo = (p3_grado_libertad_activo+1)%grados_libertad;
 	      return true;
@@ -99,5 +98,5 @@ bool P3_FGE_PulsarTeclaNormal(unsigned char tecla){
 // Función para dibujar los objetos, implementada en MallaInd.
 
 void P3_DibujarObjetos(unsigned modo){
-   figur.at(objeto_activo_3).visualizar(modo);
+   figur->visualizar(modo);
 }
