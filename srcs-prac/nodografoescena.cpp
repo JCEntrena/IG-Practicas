@@ -27,6 +27,10 @@ EntradaNGE::EntradaNGE(const Matriz4f & pMatriz){
 
 // Método de visualizado. Llama al método definido en Objeto3D.
 void NodoGrafoEscena::visualizar(unsigned cv){
+   // Cambiamos el modo de visualización a malla o sólido. 
+   if (cv != 1)
+      cv = 2;
+
    glMatrixMode(GL_MODELVIEW);
    glPushMatrix();
 
