@@ -44,20 +44,23 @@ class BrazoDerecho : public NodoGrafoEscena{
       BrazoDerecho(){
          rotacion = 0;
          agregar(MAT_Traslacion(1.55, 2.75, 0.0));
-         agregar(MAT_Traslacion(0.0, 0.95, 0.5));
+         agregar(MAT_Traslacion(0.0, 0.95, 0.25));
          agregar(MAT_Rotacion(0, 1, 0, 0));
-         agregar(MAT_Traslacion(0.0, -0.95, -0.5));
+         agregar(MAT_Traslacion(0.0, -0.95, -0.25));
          agregar(new Brazo());
       }
 
       // Función de rotación del brazo. Rotará libremente con incrementos de 10º, partiendo desde 0º.
       void rotar(bool sentido_horario){
          // Si es en sentido horario:
-         if (sentido_horario)
-            rotacion--;
+         if (sentido_horario){
+            if (rotacion > -9)
+               rotacion--;
+         }
          // En otro caso, sentido antihorario.
          else
-            rotacion++;
+            if (rotacion < 9)
+               rotacion++;
 
          entradas[2] = MAT_Rotacion((rotacion%36)*10, 1, 0, 0);
       }
@@ -70,20 +73,23 @@ class BrazoIzquierdo : public NodoGrafoEscena{
       BrazoIzquierdo(){
          rotacion = 0;
          agregar(MAT_Traslacion(-0.65, 2.75, 0.0));
-         agregar(MAT_Traslacion(0.0, 0.95, 0.5));
+         agregar(MAT_Traslacion(0.0, 0.95, 0.25));
          agregar(MAT_Rotacion(0, 1, 0, 0));
-         agregar(MAT_Traslacion(0.0, -0.95, -0.5));
+         agregar(MAT_Traslacion(0.0, -0.95, -0.25));
          agregar(new Brazo());
       }
 
       // Función de rotación del brazo. Rotará libremente con incrementos de 10º, partiendo desde 0º.
       void rotar(bool sentido_horario){
          // Si es en sentido horario:
-         if (sentido_horario)
-            rotacion--;
+         if (sentido_horario){
+            if (rotacion > -9)
+               rotacion--;
+         }
          // En otro caso, sentido antihorario.
          else
-            rotacion++;
+            if (rotacion < 9)
+               rotacion++;
 
          entradas[2] = MAT_Rotacion((rotacion%36)*10, 1, 0, 0);
       }
@@ -92,9 +98,8 @@ class BrazoIzquierdo : public NodoGrafoEscena{
 class Pie : public NodoGrafoEscena{
    public:
       Pie(){
-      agregar(MAT_Traslacion(0.0, 0.0, 0.5));
-      agregar(MAT_Escalado(0.6, 0.5, 0.5));
-      agregar(new Cubo());
+         MallaPLY *pie = new MallaPLY("../plys/pie.ply");
+         agregar(pie);
       }
 };
 
@@ -105,11 +110,11 @@ class PiernaIzquierda : public NodoGrafoEscena{
       PiernaIzquierda(){
          rotacion = 0;
 
-         agregar(new Pie());
          agregar(MAT_Escalado(0.6, 1.90, 0.5));
-         agregar(MAT_Traslacion(0.0, 0.5, 0.5));
+         agregar(MAT_Traslacion(0.0, 1.5, 0.5));
          agregar(MAT_Rotacion(0, 1, 0, 0));
-         agregar(MAT_Traslacion(0.0, -0.5, -0.5));
+         agregar(MAT_Traslacion(0.0, -1.5, -0.5));
+         agregar(new Pie());
          agregar(new Cubo());
       }
 
@@ -127,7 +132,7 @@ class PiernaIzquierda : public NodoGrafoEscena{
             if (rotacion < 6)
                rotacion++;
 
-         entradas[3] = MAT_Rotacion((rotacion%36)*2.5, 1, 0, 0);
+         entradas[2] = MAT_Rotacion((rotacion%36)*2.5, 1, 0, 0);
       }
 
 };
@@ -149,16 +154,16 @@ class PiernaDerecha : public NodoGrafoEscena{
       // El incremento será de 10º tanto positivo como negativo.
       void rotar(bool sentido_horario){
          // Sentido horario.
-         if (sentido_horario)
+         if (sentido_horario){
             if (rotacion > -6)
                rotacion--;
-
+         }
          // En otro caso, sentido antihorario.
          else
             if (rotacion < 6)
                rotacion++;
 
-         entradas[2] = MAT_Rotacion((rotacion%36)*10, 1, 0, 0);
+         entradas[2] = MAT_Rotacion((rotacion%36)*2.5, 1, 0, 0);
       }
 };
 
@@ -185,7 +190,7 @@ class Caja : public NodoGrafoEscena{
    public:
       Caja(){
          desplazamiento = 0;           // Al principio la caja no está desplazada.
-         agregar(MAT_Traslacion(-0.2, 0.0, 1.2));
+         agregar(MAT_Traslacion(-0.2, 0.0, 1.1));
          agregar(MAT_Traslacion(0.0, 0.0, 0.0));
          agregar(new Cubo());
       }
