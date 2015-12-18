@@ -43,8 +43,10 @@ class BrazoDerecho : public NodoGrafoEscena{
 
       BrazoDerecho(){
          rotacion = 0;
-         agregar(MAT_Traslacion(1.55, 2.25, 0.0));
-         agregar(MAT_Rotacion(0, 0, 0, 0));
+         agregar(MAT_Traslacion(1.55, 2.75, 0.0));
+         agregar(MAT_Traslacion(0.0, 0.95, 0.5));
+         agregar(MAT_Rotacion(0, 1, 0, 0));
+         agregar(MAT_Traslacion(0.0, -0.95, -0.5));
          agregar(new Brazo());
       }
 
@@ -57,7 +59,7 @@ class BrazoDerecho : public NodoGrafoEscena{
          else
             rotacion++;
 
-         entradas[1] = MAT_Rotacion((rotacion%36)*10, 1, 0, 0);
+         entradas[2] = MAT_Rotacion((rotacion%36)*10, 1, 0, 0);
       }
 };
 
@@ -67,8 +69,10 @@ class BrazoIzquierdo : public NodoGrafoEscena{
 
       BrazoIzquierdo(){
          rotacion = 0;
-         agregar(MAT_Traslacion(-0.65, 2.25, 0.0));
-         agregar(MAT_Rotacion(0, 0, 0, 0));
+         agregar(MAT_Traslacion(-0.65, 2.75, 0.0));
+         agregar(MAT_Traslacion(0.0, 0.95, 0.5));
+         agregar(MAT_Rotacion(0, 1, 0, 0));
+         agregar(MAT_Traslacion(0.0, -0.95, -0.5));
          agregar(new Brazo());
       }
 
@@ -81,7 +85,16 @@ class BrazoIzquierdo : public NodoGrafoEscena{
          else
             rotacion++;
 
-         entradas[1] = MAT_Rotacion((rotacion%36)*10, 1, 0, 0);
+         entradas[2] = MAT_Rotacion((rotacion%36)*10, 1, 0, 0);
+      }
+};
+
+class Pie : public NodoGrafoEscena{
+   public:
+      Pie(){
+      agregar(MAT_Traslacion(0.0, 0.0, 0.5));
+      agregar(MAT_Escalado(0.6, 0.5, 0.5));
+      agregar(new Cubo());
       }
 };
 
@@ -91,8 +104,12 @@ class PiernaIzquierda : public NodoGrafoEscena{
 
       PiernaIzquierda(){
          rotacion = 0;
-         agregar(MAT_Escalado(0.6, 1.45, 0.5));
-         agregar(MAT_Rotacion(0, 0, 0, 0));
+
+         agregar(new Pie());
+         agregar(MAT_Escalado(0.6, 1.90, 0.5));
+         agregar(MAT_Traslacion(0.0, 0.5, 0.5));
+         agregar(MAT_Rotacion(0, 1, 0, 0));
+         agregar(MAT_Traslacion(0.0, -0.5, -0.5));
          agregar(new Cubo());
       }
 
@@ -110,7 +127,7 @@ class PiernaIzquierda : public NodoGrafoEscena{
             if (rotacion < 6)
                rotacion++;
 
-         entradas[1] = MAT_Rotacion((rotacion%36)*10, 1, 0, 0);
+         entradas[3] = MAT_Rotacion((rotacion%36)*2.5, 1, 0, 0);
       }
 
 };
@@ -122,7 +139,9 @@ class PiernaDerecha : public NodoGrafoEscena{
       PiernaDerecha(){
          rotacion = 0;
          agregar(MAT_Traslacion(0.9, 0, 0));
-         agregar(MAT_Rotacion(0, 0, 0, 0));
+         agregar(MAT_Traslacion(0.0, 1.0, 0.5));
+         agregar(MAT_Rotacion(0, 1, 0, 0));
+         agregar(MAT_Traslacion(0.0, -1.0, -0.5));
          agregar(new PiernaIzquierda());
       }
 
@@ -139,14 +158,14 @@ class PiernaDerecha : public NodoGrafoEscena{
             if (rotacion < 6)
                rotacion++;
 
-         entradas[1] = MAT_Rotacion((rotacion%36)*10, 1, 0, 0);
+         entradas[2] = MAT_Rotacion((rotacion%36)*10, 1, 0, 0);
       }
 };
 
 class Cabeza : public NodoGrafoEscena{
    public:
        Cabeza(){
-          agregar(MAT_Traslacion(0.25, 4.05, -0.25));
+          agregar(MAT_Traslacion(0.25, 4.55, -0.25));
           agregar(new Cubo());
        }
 };
@@ -154,7 +173,7 @@ class Cabeza : public NodoGrafoEscena{
 class Tronco : public NodoGrafoEscena{
    public:
       Tronco(){
-         agregar(MAT_Traslacion(0.0, 1.5, -0.5));
+         agregar(MAT_Traslacion(0.0, 2.0, -0.5));
          agregar(MAT_Escalado(1.5, 2.5, 1.5));
          agregar(new Cubo());
       }
