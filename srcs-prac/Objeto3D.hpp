@@ -1,7 +1,7 @@
 #ifndef OBJETO3D_HPP
 #define OBJETO3D_HPP
 
-#include<string> 
+#include<string>
 #include"aux.hpp"
 
 // clase abstracta para objetos 3D visualizables con OpenGL
