@@ -15,7 +15,7 @@ using namespace std;
 
 unsigned objeto_activo_3 = 0 ; // Objeto activo
 unsigned p3_grado_libertad_activo = 0; // Grado de libertad activo
-unsigned grados_libertad = 3;
+unsigned grados_libertad = 4;
 
 // ---------------------------------------------------------------------
 // Declaraciones de estructuras de datos...
@@ -54,6 +54,9 @@ void aumenta(){
       case 2:  // Mover la caja.
          figur->MueveCaja(true);
          break;
+      case 3: // Negar con la cabeza.
+         figur->Negar(true);
+         break;
       default: break;
    }
 
@@ -70,6 +73,9 @@ void disminuye(){
          break;
       case 2:
          figur->MueveCaja(false);
+         break;
+      case 3:
+         figur->Negar(false);
          break;
       default: break;
    }
@@ -94,6 +100,8 @@ bool P3_FGE_PulsarTeclaNormal(unsigned char tecla){
             case 2:
                cout << "Grado de libertad 3: Movimiento de la caja." << endl;
                break;
+            case 3:
+               cout << "Grado de libertad 4: Movimiento de la cabeza (negación)." << endl;            
             default: break;
          }
 	      return true;
