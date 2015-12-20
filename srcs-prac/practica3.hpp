@@ -62,7 +62,7 @@ class BrazoDerecho : public NodoGrafoEscena{
             if (rotacion < 9)
                rotacion++;
 
-         entradas[2] = MAT_Rotacion((rotacion%36)*10, 1, 0, 0);
+         entradas[2] = MAT_Rotacion(rotacion*10, 1, 0, 0);
       }
 };
 
@@ -91,15 +91,16 @@ class BrazoIzquierdo : public NodoGrafoEscena{
             if (rotacion < 9)
                rotacion++;
 
-         entradas[2] = MAT_Rotacion((rotacion%36)*10, 1, 0, 0);
+         entradas[2] = MAT_Rotacion(rotacion*10, 1, 0, 0);
       }
 };
 
-class Pie : public NodoGrafoEscena{
+class Pierna : public NodoGrafoEscena{
    public:
-      Pie(){
+      Pierna(){
          MallaPLY *pie = new MallaPLY("../plys/pie.ply");
          agregar(pie);
+         agregar(new Cubo());
       }
 };
 
@@ -109,17 +110,15 @@ class PiernaIzquierda : public NodoGrafoEscena{
 
       PiernaIzquierda(){
          rotacion = 0;
-
-         agregar(MAT_Escalado(0.6, 1.90, 0.5));
-         agregar(MAT_Traslacion(0.0, 1.5, 0.5));
+         agregar(MAT_Traslacion(0.0, 2.0, 0.5));
          agregar(MAT_Rotacion(0, 1, 0, 0));
-         agregar(MAT_Traslacion(0.0, -1.5, -0.5));
-         agregar(new Pie());
-         agregar(new Cubo());
+         agregar(MAT_Traslacion(0.0, -2.0, -0.5));
+         agregar(MAT_Escalado(0.6, 1.90, 0.5));
+         agregar(new Pierna());
       }
 
-      // Función de rotación. Permitimos que la pierna rote de -60º a 60º, partiendo desde 0º.
-      // El incremento será de 10º tanto positivo como negativo.
+      // Función de rotación. Permitimos que la pierna rote en ambos sentido partiendo desde 0º.
+      // El incremento será de 2.5º tanto positivo como negativo.
       void rotar(bool sentido_horario){
          // Sentido horario.
          if (sentido_horario){
@@ -129,10 +128,10 @@ class PiernaIzquierda : public NodoGrafoEscena{
 
          // En otro caso, sentido antihorario.
          else
-            if (rotacion < 6)
+            if (rotacion < 10)
                rotacion++;
 
-         entradas[2] = MAT_Rotacion((rotacion%36)*2.5, 1, 0, 0);
+         entradas[1] = MAT_Rotacion(rotacion*2.5, 1, 0, 0);
       }
 
 };
@@ -144,9 +143,9 @@ class PiernaDerecha : public NodoGrafoEscena{
       PiernaDerecha(){
          rotacion = 0;
          agregar(MAT_Traslacion(0.9, 0, 0));
-         agregar(MAT_Traslacion(0.0, 1.0, 0.5));
+         agregar(MAT_Traslacion(0.0, 2.0, 0.5));
          agregar(MAT_Rotacion(0, 1, 0, 0));
-         agregar(MAT_Traslacion(0.0, -1.0, -0.5));
+         agregar(MAT_Traslacion(0.0, -2.0, -0.5));
          agregar(new PiernaIzquierda());
       }
 
@@ -160,18 +159,33 @@ class PiernaDerecha : public NodoGrafoEscena{
          }
          // En otro caso, sentido antihorario.
          else
-            if (rotacion < 6)
+            if (rotacion < 10)
                rotacion++;
 
-         entradas[2] = MAT_Rotacion((rotacion%36)*2.5, 1, 0, 0);
+         entradas[2] = MAT_Rotacion(rotacion*2.5, 1, 0, 0);
       }
 };
 
 class Cabeza : public NodoGrafoEscena{
    public:
+      int rotacion;
        Cabeza(){
+          rotacion = 0;
           agregar(MAT_Traslacion(0.25, 4.55, -0.25));
+          agregar(MAT_Traslacion(0.5, 0, 0.5));
+          agregar(MAT_Rotacion(0, 1, 0, 0));
+          agregar(MAT_Traslacion(-0.5, 0, -0.5));
           agregar(new Cubo());
+       }
+       void negar(bool sentido_antihorario){
+          if (sentido_antihorario){
+             if (rotacion < 4)
+               rotacion++;
+          }
+          else
+            if (rotacion > -4)
+               rotacion--;
+         entradas[2] = MAT_Rotacion(rotacion*5, 0, 1, 0);
        }
 };
 
@@ -196,9 +210,9 @@ class Caja : public NodoGrafoEscena{
       }
 
       // Función que desplaza la caja hacia adelante.
-      // No permitimos que el número de desplazamientos sea mayor que 10.
+      // No permitimos que el número de desplazamientos sea mayor que 12.
       void desplazar_adelante(){
-         if (desplazamiento < 10){
+         if (desplazamiento < 12){
             desplazamiento++;
             entradas[1] = MAT_Traslacion(0.0, 0.0, desplazamiento/4.0);
          }
@@ -215,7 +229,7 @@ class Caja : public NodoGrafoEscena{
 
 class Figura : public NodoGrafoEscena{
    private:
-      Cabeza* cabeza;
+      Cabeza* cb;
       BrazoIzquierdo* bi;
       BrazoDerecho* bd;
       PiernaDerecha* pd;
@@ -226,7 +240,7 @@ class Figura : public NodoGrafoEscena{
    public:
       Figura(){
          tr = new Tronco(); agregar(tr);
-         cabeza = new Cabeza(); agregar(cabeza);
+         cb = new Cabeza(); agregar(cb);
          bi = new BrazoIzquierdo(); agregar(bi);
          bd = new BrazoDerecho(); agregar(bd);
          pd = new PiernaDerecha(); agregar(pd);
@@ -252,6 +266,10 @@ class Figura : public NodoGrafoEscena{
             cj->desplazar_adelante();
          else
             cj->desplazar_atras();
+      }
+
+      void Negar(bool sentido){
+         cb->negar(sentido);
       }
 };
 
