@@ -101,7 +101,7 @@ bool P3_FGE_PulsarTeclaNormal(unsigned char tecla){
                cout << "Grado de libertad 3: Movimiento de la caja." << endl;
                break;
             case 3:
-               cout << "Grado de libertad 4: Movimiento de la cabeza (negación)." << endl;            
+               cout << "Grado de libertad 4: Movimiento de la cabeza (negación)." << endl;
             default: break;
          }
 	      return true;
