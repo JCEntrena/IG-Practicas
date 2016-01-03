@@ -11,9 +11,12 @@ class MallaInd : public Objeto3D{
 protected:
     std::vector<Tupla3f> vertices;
     std::vector<Tupla3i> indices;
+    std::vector<Tupla3f> normal_caras;
+    std::vector<Tupla3f> normal_vertices; 
 
 public:
     virtual void visualizar(unsigned modo_vis);
+    void calcularNormales();
 };
 
 // Clase para mallas indexadas obtenidas de un PLY.

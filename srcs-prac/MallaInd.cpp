@@ -36,6 +36,10 @@ void MallaInd::visualizar(unsigned modo_vis){
     glDisableClientState(GL_VERTEX_ARRAY);
 }
 
+void MallaInd::calcularNormales(){
+   
+}
+
 // Constructor para las mallas indexadas a partir de un archivo PLY
 MallaPLY::MallaPLY(const char* nombre_archivo){
    // Estructuras auxiliares para la lectura.
@@ -50,6 +54,8 @@ MallaPLY::MallaPLY(const char* nombre_archivo){
    // De igual forma para los índices.
    for (int i = 0; i < index_aux.size(); i = i+3)
       indices.push_back(Tupla3i(index_aux.at(i), index_aux.at(i+1), index_aux.at(i+2)));
+
+   calcularNormales();
 }
 
 // Constructor para las mallas indexadas a partir de la revolución de una polilínea.
@@ -123,6 +129,8 @@ MallaRevol::MallaRevol(const char* nombre_archivo, unsigned nperfiles){
                                 ((i+2)*num_vertices-1)%(nperfiles*num_vertices),
                                 index_bottom));
    }
+
+   calcularNormales();
 }
 
 MallaBarrido::MallaBarrido(const char* nombre_archivo, float x, float y, float z, unsigned nperfiles){
@@ -152,4 +160,6 @@ MallaBarrido::MallaBarrido(const char* nombre_archivo, float x, float y, float z
          indices.push_back(Tupla3i(i*num_vertices+((j+1)%num_vertices), (i+1)*num_vertices+j, (i+1)*num_vertices+(j+1)));
       }
    }
+
+   calcularNormales();
 }
