@@ -37,7 +37,31 @@ void MallaInd::visualizar(unsigned modo_vis){
 }
 
 void MallaInd::calcularNormales(){
-   
+   Tupla3f a, b, c, s, p, n;
+   // Normales para las caras.
+   for (unsigned int i = 0; i < indices.size(); i++){
+      a = vertices[indices[i][0]];
+      b = vertices[indices[i][1]];
+      c = vertices[indices[i][2]];
+      // Producto vectorial
+      s = b-a;
+      p = c-b;
+      n = s.cross(p);
+      // Insertamos
+      normal_caras.push_back(n.normalized());
+   }
+   // Normales para los vértices.
+   Tupla3f aux;
+   for (unsigned int i = 0; i < normal_caras.size(); i++){
+      aux = (0, 0, 0);
+      for (unsigned int j = 0; j < 3; j++){
+         int indice = indices[i][j];
+         aux += normal_caras[indice];
+      }
+      normal_vertices.push_back(aux);
+   }
+   for (unsigned int i = 0; i < normal_vertices.size(); i++)
+      normal_vertices[i] = normal_vertices[i].normalized();
 }
 
 // Constructor para las mallas indexadas a partir de un archivo PLY
