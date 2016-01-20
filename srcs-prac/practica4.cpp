@@ -13,14 +13,13 @@
 
 using namespace std;
 
-unsigned objeto_activo_3 = 0 ; // Objeto activo
+unsigned objeto_activo_4 = 0 ; // Objeto activo
 unsigned p4_grado_libertad_activo = 0; // Grado de libertad activo
-unsigned grados_libertad = 2; // Ángulos alpha y beta de la fuente de luz direccional
+unsigned grados_libertad_4 = 2; // Ángulos alpha y beta de la fuente de luz direccional
 
 // ---------------------------------------------------------------------
 // Declaraciones de estructuras de datos...
 
-Figura* figur;
 
 // ---------------------------------------------------------------------
 // Función para implementar en la práctica para inicialización.
@@ -43,7 +42,7 @@ void P4_Inicializar( int argc, char *argv[] ){
 
 
 // Función para aumentar el grado de libertad activo. Se llama al pulsar ">"
-void aumenta(){
+void aumenta_4(){
    switch (p4_grado_libertad_activo){
 
       default: break;
@@ -52,7 +51,7 @@ void aumenta(){
 }
 
 // Función para aumentar el grado de libertad activo. Se llama al pulsar "<"
-void disminuye(){
+void disminuye_4(){
    switch (p4_grado_libertad_activo){
 
       default: break;
@@ -65,17 +64,17 @@ bool P4_FGE_PulsarTeclaNormal(unsigned char tecla){
 
    switch (toupper(tecla)){
       case 'G' :
-         p4_grado_libertad_activo = (p4_grado_libertad_activo+1)%grados_libertad;
+         p4_grado_libertad_activo = (p4_grado_libertad_activo+1)%grados_libertad_4;
          switch(p4_grado_libertad_activo){
 
             default: break;
          }
 	      return true;
       case '<' :
-         disminuye();
+         disminuye_4();
          return true;
       case '>' :
-         aumenta();
+         aumenta_4();
          return true;
       default :
 	     return false;

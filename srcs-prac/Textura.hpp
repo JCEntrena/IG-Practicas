@@ -3,7 +3,10 @@
 
 #include "aux.hpp"
 #include "tuplasg.hpp"   // Tupla3f
+#include "jpg_imagen.hpp"
+#include "jpg_readwrite.hpp"
 #include <string>
+
 
 using namespace std;
 
@@ -18,3 +21,5 @@ class Textura{
       void activar();            // activa textura en el cauce fijo de OpenGL
       Textura(const string & archivoJPG);  // crea un textura a partir de un archivo
 };
+
+#endif

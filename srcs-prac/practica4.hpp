@@ -12,6 +12,7 @@
 #include "matrizg.hpp"
 #include "nodografoescena.hpp"
 #include "matrices-tr.hpp"
+#include "figura.hpp"
 #include <vector>
 
 using namespace std;
@@ -56,15 +57,12 @@ class ColeccionFL{
    public:
       vector<FuenteLuz *> fuentes;        // fuentes de luz
       void activar();                     // activa las fuentes de luz, activando y configurando la iluminación antes
-}
+};
 
 
 class ColeccionFuentesP4 : public ColeccionFL{
    public:
       ColeccionFuentesP4();
 };
-
-
-
 
 #endif

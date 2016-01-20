@@ -7,9 +7,13 @@
 // **
 // *********************************************************************
 
+#ifndef NODO
+#define NODO
+
 #include "Objeto3D.hpp"
 #include "MallaInd.hpp"
 #include "matrizg.hpp"
+#include "Material.hpp"
 #include <vector>
 
 using namespace std;
@@ -41,6 +45,8 @@ class NodoGrafoEscena : public Objeto3D{
       // Construir una entrada y añadirla.
       void agregar(Objeto3D * pObjeto);
       void agregar(const Matriz4f & pMatriz);
-      void agregar(Material * material); 
+      void agregar(Material * material);
 
 };
+
+#endif

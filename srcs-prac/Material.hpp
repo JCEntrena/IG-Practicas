@@ -1,7 +1,9 @@
 #ifndef MATERIAL
 #define MATERIAL
 
-include "Texturas.hpp"
+#include "aux.hpp"
+#include "tuplasg.hpp"   // Tupla3f
+#include "Textura.hpp"
 
 // Clases para materiales.
 class Material{
@@ -10,7 +12,7 @@ class Material{
 };
 
 // Clase para material estándar, con datos públicos.
-// Los modificaremos en los constructores de las clases derivadas. 
+// Los modificaremos en los constructores de las clases derivadas.
 class MaterialEstandar : public Material{
    public:
       Textura * text;      // puntero a la textura (NULL en caso de no haber)
@@ -21,3 +23,5 @@ class MaterialEstandar : public Material{
                                     // si tiene textura se usa text
                                     // si no tiene textura se desactiva el uso de texturas
 };
+
+#endif

@@ -53,10 +53,10 @@ void MallaInd::calcularNormales(){
    // Normales para los vértices.
    Tupla3f aux;
    for (unsigned int i = 0; i < normal_caras.size(); i++){
-      aux = (0, 0, 0);
+      aux = Tupla3f(0, 0, 0);
       for (unsigned int j = 0; j < 3; j++){
          int indice = indices[i][j];
-         aux += normal_caras[indice];
+         aux = aux + normal_caras[indice];
       }
       normal_vertices.push_back(aux);
    }
