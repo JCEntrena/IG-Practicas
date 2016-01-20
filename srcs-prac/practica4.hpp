@@ -35,22 +35,7 @@ class Textura{
       Textura(const std::string & archivoJPG);  // crea un textura a partir de un archivo
 };
 
-// Clases para materiales.
-class Material{
-   public:
-      virtual void activar() = 0;
-};
 
-class MaterialEstandar : public Material{
-   public:
-      Textura * text;      // puntero a la textura (NULL en caso de no haber)
-      Tupla4f color[4];    // colores: 0: emisión, 1: ambiental, 2: difuso, 3: especular
-      float exponente;     // para la componente pseudo-especular
-
-      virtual void activar();       // activa material en cauce fijo
-                                    // si tiene textura se usa text
-                                    // si no tiene textura se desactiva el uso de texturas
-};
 
 // Clases para las fuentes de luz.
 class FuenteLuz{
@@ -80,7 +65,7 @@ class FuentePosicional : public FuenteLuz{
 };
 
 
-// Colecciones de fuentes de luz. 
+// Colecciones de fuentes de luz.
 class ColeccionFL{
    public:
       vector<FuenteLuz *> fuentes;        // fuentes de luz
