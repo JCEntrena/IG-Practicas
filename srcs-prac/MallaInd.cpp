@@ -35,8 +35,18 @@ void MallaInd::visualizar(contextovis modo_vis){
        }
     }
 
-    else {}
-    
+    // Modo de visualización para la práctica 4: iluminación.
+    else {
+      switch(modo_vis.modo_ilu){
+         case 0:
+         break;
+         case 1:
+         break;
+         default:
+         break;
+      }
+    }
+
     glDisableClientState(GL_VERTEX_ARRAY);
 }
 
