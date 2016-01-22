@@ -38,9 +38,9 @@ void MallaInd::visualizar(contextovis modo_vis){
     // Modo de visualización para la práctica 4: iluminación.
     else {
       switch(modo_vis.modo_ilu){
-         case 0:
+         case 0:           // Modo plano
          break;
-         case 1:
+         case 1:           // Modo suave
          break;
          default:
          break;
