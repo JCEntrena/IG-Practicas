@@ -4,6 +4,21 @@
 // Activa un material en el cauce fijo.
 void MaterialEstandar::activar(){
 
+   glLightModelf(GL_LIGHT_MODEL_AMBIENT, [0.0, 0.0, 0.0, 1.0]);
+   glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, color[0]);
+   glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, color[1]);
+   glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, color[2]);
+   glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, color[3]);
+   glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, exponente);
+
+   glColorMaterial(GL_FRONT_AND_BACK, GL_EMISSION);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_DIFFUSE);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_SPECULAR);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+
+   if (textura != NULL)
+      textura->activar();
 }
 
 //Constructores para los materiales específicos de la práctica 4.
