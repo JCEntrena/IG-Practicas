@@ -22,14 +22,19 @@ EntradaNGE::EntradaNGE(const Matriz4f & pMatriz){
    matriz = new Matriz4f(pMatriz);
 }
 
+EntradaNGE::EntradaNGE(Material * m){
+   tipoE = 2;
+   material = m;
+}
+
 // --------------------------------------------------------
 // Clase NodoGrafoEscena
 
 // Método de visualizado. Llama al método definido en Objeto3D.
-void NodoGrafoEscena::visualizar(unsigned cv){
-   // Cambiamos el modo de visualización a malla o sólido. 
-   if (cv != 1)
-      cv = 2;
+void NodoGrafoEscena::visualizar(contextovis cv){
+   // Cambiamos el modo de visualización a malla o sólido.
+   if (cv.modo_nor != 1)
+      cv.modo_nor = 2;
 
    glMatrixMode(GL_MODELVIEW);
    glPushMatrix();
@@ -37,7 +42,7 @@ void NodoGrafoEscena::visualizar(unsigned cv){
    // Recorre todas las entradas del array que hay en el nodo.
    int tamanio = entradas.size();
    for (unsigned i = 0; i < tamanio; i++){
-      if (entradas[i].tipoE == 0)
+      if (entradas[i].tipoE != 1)
          entradas[i].objeto->visualizar(cv);
       else
          glMultMatrixf(*(entradas[i].matriz));
@@ -58,5 +63,10 @@ void NodoGrafoEscena::agregar(Objeto3D * pObjeto){
 
 void NodoGrafoEscena::agregar(const Matriz4f & pMatriz){
    EntradaNGE nueva(pMatriz);
+   entradas.push_back(nueva);
+}
+
+void NodoGrafoEscena::agregar(Material * material){
+   EntradaNGE nueva(material);
    entradas.push_back(nueva);
 }

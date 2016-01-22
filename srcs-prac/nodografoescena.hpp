@@ -31,6 +31,7 @@ struct EntradaNGE{
    // Constructores
    EntradaNGE(Objeto3D * pObjeto); // Copia puntero.
    EntradaNGE(const Matriz4f & pMatriz); // Crea copia de matriz.
+   EntradaNGE(Material * material);
 };
 
 // Clase NodoGrafoEscena
@@ -39,7 +40,7 @@ class NodoGrafoEscena : public Objeto3D{
       vector<EntradaNGE> entradas;
    public:
       // Método de visualizado.
-      virtual void visualizar(unsigned cv);
+      virtual void visualizar(contextovis cv);
       // Añadir una entrada genérica.
       void agregar(EntradaNGE * entrada);
       // Construir una entrada y añadirla.

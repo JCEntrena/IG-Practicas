@@ -1,38 +1,42 @@
 #include "MallaInd.hpp"
 
 // Implementación de la función para la visualización de objetos.
-void MallaInd::visualizar(unsigned modo_vis){
+void MallaInd::visualizar(contextovis modo_vis){
 
     glEnableClientState(GL_VERTEX_ARRAY); // Habilitar array de vértices.
     glVertexPointer(3, GL_FLOAT, 0, &vertices.front());
 
-    switch(modo_vis){
-        case 0: // Modo puntos.
-            glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
-            glDrawElements(GL_TRIANGLES, indices.size()*3, GL_UNSIGNED_INT, &indices.front());
-        break;
-        case 1: // Modo aristas.
-            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-            glDrawElements(GL_TRIANGLES, indices.size()*3, GL_UNSIGNED_INT, &indices.front());
-        break;
-        case 2: // Modo sólido.
-            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-            glDrawElements(GL_TRIANGLES, indices.size()*3, GL_UNSIGNED_INT, &indices.front());
-        break;
-        case 3: // Modo ajedrez (alterna dos colores).
-            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-            for (int i = 0; i < indices.size(); i++){
-               // Alternamos entre negro y azul.
-                glColor3f(0,0,i%2);
-                glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, &indices[i]);
-            }
-        break;
-        default: // Por defecto: Modo puntos.
-            glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
-            glDrawElements(GL_TRIANGLES, indices.size()*3, GL_UNSIGNED_INT, &indices.front());
-        break;
+    if (modo_vis.iluminacion == false){
+       switch(modo_vis.modo_nor){
+           case 0: // Modo puntos.
+               glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+               glDrawElements(GL_TRIANGLES, indices.size()*3, GL_UNSIGNED_INT, &indices.front());
+           break;
+           case 1: // Modo aristas.
+               glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+               glDrawElements(GL_TRIANGLES, indices.size()*3, GL_UNSIGNED_INT, &indices.front());
+           break;
+           case 2: // Modo sólido.
+               glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+               glDrawElements(GL_TRIANGLES, indices.size()*3, GL_UNSIGNED_INT, &indices.front());
+           break;
+           case 3: // Modo ajedrez (alterna dos colores).
+               glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+               for (int i = 0; i < indices.size(); i++){
+                  // Alternamos entre negro y azul.
+                   glColor3f(0,0,i%2);
+                   glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, &indices[i]);
+               }
+           break;
+           default: // Por defecto: Modo puntos.
+               glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+               glDrawElements(GL_TRIANGLES, indices.size()*3, GL_UNSIGNED_INT, &indices.front());
+           break;
+       }
     }
 
+    else {}
+    
     glDisableClientState(GL_VERTEX_ARRAY);
 }
 

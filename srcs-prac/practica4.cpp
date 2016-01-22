@@ -84,6 +84,6 @@ bool P4_FGE_PulsarTeclaNormal(unsigned char tecla){
 // ---------------------------------------------------------------------
 // Función para dibujar los objetos, implementada en MallaInd.
 
-void P4_DibujarObjetos(unsigned modo){
+void P4_DibujarObjetos(contextovis modo){
 
 }

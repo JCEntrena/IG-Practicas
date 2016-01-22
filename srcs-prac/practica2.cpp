@@ -83,6 +83,6 @@ bool P2_FGE_PulsarTeclaNormal(unsigned char tecla){
 // ---------------------------------------------------------------------
 // Función para dibujar los objetos, implementada en MallaInd.
 
-void P2_DibujarObjetos(unsigned modo){
-   figuras.at(objeto_activo_2).visualizar(modo);
+void P2_DibujarObjetos(unsigned int modo){
+   figuras.at(objeto_activo_2).visualizar(contextovis(modo));
 }

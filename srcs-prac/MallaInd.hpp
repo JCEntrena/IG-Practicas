@@ -12,10 +12,11 @@ protected:
     std::vector<Tupla3f> vertices;
     std::vector<Tupla3i> indices;
     std::vector<Tupla3f> normal_caras;
-    std::vector<Tupla3f> normal_vertices; 
+    std::vector<Tupla3f> normal_vertices;
+    std::vector<Tupla2f> coord_textura;
 
 public:
-    virtual void visualizar(unsigned modo_vis);
+    virtual void visualizar(contextovis modo_vis);
     void calcularNormales();
 };
 

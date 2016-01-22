@@ -57,9 +57,9 @@ bool P1_FGE_PulsarTeclaNormal(unsigned char tecla){
 // Función a implementar en la práctica 1  para dibujar los objetos
 // modo: 0 - puntos, 1 - alambre, 2 - sólido, 3 - sólido ajedrez , >=4 otros....
 
-void P1_DibujarObjetos(unsigned modo){
+void P1_DibujarObjetos(unsigned int modo){
 
-  	fig[objeto_activo].visualizar(modo);
+  	fig[objeto_activo].visualizar(contextovis(modo));
 
 }
 

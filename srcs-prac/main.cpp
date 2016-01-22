@@ -61,7 +61,8 @@ int
 // ---------------------------------------------------------------------
 
 unsigned
-   modo_vis  ,  // modo de visualización (0,1,3,4)
+   modo_vis  ,  // modo de visualización (0,1,2,3)
+   modo_ilu  ,  // modo de visualización en iluminación (0,1)
    practica_actual ;  // practica actual (cambiable por teclado) (1,2,3,4,5)
 
 // *********************************************************************
@@ -187,7 +188,7 @@ void DibujarObjetos()
          P3_DibujarObjetos(modo_vis);
          break;
       case 4 :
-         // P4:DibujarObjetos(modo_vis);
+         // P4_DibujarObjetos(contextovis(true, 0, modo_ilu));
          break;
       default :
          cout << "El valor de 'practica_actual' (" << practica_actual  << ") es incorrecto" << endl ;
@@ -263,7 +264,10 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
 
       // Modos de visualización.
       case 'M' :
-         modo_vis = (modo_vis+1)%4;
+         if (practica_actual != 4)
+            modo_vis = (modo_vis+1)%4;
+         else
+            modo_ilu = (modo_ilu+1)%2;
          break;
       default:
          // Vemos si la práctica activa usa la tecla que hemos pulsado.
@@ -393,8 +397,9 @@ void Inicializa_Vars( ){
    camara_angulo_y = 0.0 ;
 
    // inicializar práctica actual y modo de visualización inicial
-   practica_actual = 1 ;
-   modo_vis = 0 ;
+   practica_actual = 1;
+   modo_vis = 0;
+   modo_ilu = 0;
 }
 
 // ---------------------------------------------------------------------
@@ -465,7 +470,7 @@ void Inicializar( int argc, char *argv[] )
    P3_Inicializar(argc, argv);
 
    // Inicializar práctica 4.
-   //P4_Inicializar(argc, argv); 
+   //P4_Inicializar(argc, argv);
 }
 
 // *********************************************************************

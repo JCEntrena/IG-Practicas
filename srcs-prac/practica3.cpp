@@ -86,8 +86,6 @@ void disminuye(){
 bool P3_FGE_PulsarTeclaNormal(unsigned char tecla){
 
    switch (toupper(tecla)){
-      //case 'O' :
-         //return true;
       case 'G' :
          p3_grado_libertad_activo = (p3_grado_libertad_activo+1)%grados_libertad;
          switch(p3_grado_libertad_activo){
@@ -120,5 +118,5 @@ bool P3_FGE_PulsarTeclaNormal(unsigned char tecla){
 // Función para dibujar los objetos, implementada en MallaInd.
 
 void P3_DibujarObjetos(unsigned modo){
-   figur->visualizar(modo);
+   figur->visualizar(contextovis(modo));
 }
