@@ -27,7 +27,7 @@ unsigned grados_libertad_4 = 2; // Ángulos alpha y beta de la fuente de luz dir
 // inicializado OpenGL.
 
 void P4_Inicializar( int argc, char *argv[] ){
-
+   Escena * esc = new Escena();
 }
 
 // ---------------------------------------------------------------------
@@ -88,9 +88,9 @@ void P4_DibujarObjetos(contextovis modo){
 }
 
 
-// Fuentes de luz. 
+// Fuentes de luz.
 void FuenteLuz::activar(int i){
-   glEnable(GL_LIGHTi);
+   glEnable(GL_LIGHT0+i);
    if (posvec[3] == 1.0){     // Si es direccional cambiamos el valor de la posicion por el vector.
       Tupla4f aux(cos(lon)*sin(lat), sin(lon)*sin(lat), cos(lat), 1.0);
       posvec = aux;
@@ -98,16 +98,16 @@ void FuenteLuz::activar(int i){
 
    glMatrixMode(GL_MODELVIEW);
 
-   glLightfv(GL_LIGHTi, GL_POSITION, posvec);
-   glLightfv(GL_LIGHTi, GL_AMBIENT, colores[0]);
-   glLightfv(GL_LIGHTi, GL_DIFFUSE, colores[1]);
-   glLightfv(GL_LIGHTi, GL_SPECULAR, colores[2]);
+   glLightfv(GL_LIGHT0+i, GL_POSITION, posvec);
+   glLightfv(GL_LIGHT0+i, GL_AMBIENT, colores[0]);
+   glLightfv(GL_LIGHT0+i, GL_DIFFUSE, colores[1]);
+   glLightfv(GL_LIGHT0+i, GL_SPECULAR, colores[2]);
 }
 
 FuentePosicional::FuentePosicional(const Tupla3f & pos){
    id = numero_fuentes;
    numero_fuentes++;
-   pos_vec = Tupla4f(pos(0), pos(1), pos(2), 0.0);
+   posvec = Tupla4f(pos(0), pos(1), pos(2), 0.0);
    colores[0] = Tupla3f(0.5, 0.5, 0.5);
    colores[1] = Tupla3f(0.05, 0.05, 0.05);
    colores[2] = Tupla3f(0.3, 0.3, 0.3);
@@ -130,5 +130,12 @@ void ColeccionFL::activar(){
    for (int i = 0; i < numero_fuentes; i++)
       fuentes.at(i)->activar(i);
    for (int i = numero_fuentes; i < 8; i++)
-      glDisable(GL_LIGHTi);
+      glDisable(GL_LIGHT0+i);
+}
+
+ColeccionFuentesP4::ColeccionFuentesP4(){
+   FuenteLuz *fuente_dir, *fuente_pos;
+   Tupla3f nueva(0.0, -5.0, -5.0);
+   fuente_dir = new FuenteDireccional(0,0); fuentes.push_back(fuente_dir);
+   fuente_pos = new FuentePosicional(nueva); fuentes.push_back(fuente_pos);
 }

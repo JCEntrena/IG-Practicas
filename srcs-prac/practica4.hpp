@@ -24,33 +24,33 @@ void P4_DibujarObjetos( unsigned modo ) ;
 // -----------------------------------------------
 // Clases adicionales
 
-// Clase para la escena.
+// Clases para la escena.
 
 class Peon : public NodoGrafoEscena{
    public:
       Peon(){
-         MallaRevol * mpeon = new MallaRevol("../plys/peon.ply", 12);
+         MallaRevol * peon = new MallaRevol("../plys/peon.ply", 12);
          agregar(peon);
       }
-}
+};
 
 class Escena : public NodoGrafoEscena{
    public:
-      Peon * peon1, peon2, peon3;
+      Peon *peon1, *peon2, *peon3;
       Escena(){
          peon1 = new Peon(); agregar(peon1);
          agregar(MAT_Traslacion(2.0, 0.0, 0.0));
          peon2 = new Peon(); agregar(peon2);
          agregar(MAT_Traslacion(2.0, 0.0, 0.0));
-         peon3 = new Peon(); agregar(peon3); 
+         peon3 = new Peon(); agregar(peon3);
       }
 
-}
+};
 
 // Clases para las fuentes de luz.
 class FuenteLuz{
    public:
-      static unsigned int numero_fuentes = 0;
+      unsigned int numero_fuentes = 0;
       int id;
       Tupla4f posvec;      // posición
       Tupla3f colores[3];  // colores ambiental, difuso y especular
