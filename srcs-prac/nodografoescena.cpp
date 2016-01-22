@@ -42,10 +42,12 @@ void NodoGrafoEscena::visualizar(contextovis cv){
    // Recorre todas las entradas del array que hay en el nodo.
    int tamanio = entradas.size();
    for (unsigned i = 0; i < tamanio; i++){
-      if (entradas[i].tipoE != 1)
+      if (entradas[i].tipoE == 0)
          entradas[i].objeto->visualizar(cv);
-      else
+      else if (entradas[i].tipoE == 1)
          glMultMatrixf(*(entradas[i].matriz));
+      else
+         entradas[i].material->activar(); 
    }
 
    glMatrixMode(GL_MODELVIEW);
