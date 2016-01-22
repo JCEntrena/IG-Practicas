@@ -71,7 +71,6 @@ bool P4_FGE_PulsarTeclaNormal(unsigned char tecla){
          }
 	      return true;
       case '<' :
-         disminuye_4();
          return true;
       case '>' :
          aumenta_4();
@@ -86,4 +85,50 @@ bool P4_FGE_PulsarTeclaNormal(unsigned char tecla){
 
 void P4_DibujarObjetos(contextovis modo){
 
+}
+
+
+// Fuentes de luz. 
+void FuenteLuz::activar(int i){
+   glEnable(GL_LIGHTi);
+   if (posvec[3] == 1.0){     // Si es direccional cambiamos el valor de la posicion por el vector.
+      Tupla4f aux(cos(lon)*sin(lat), sin(lon)*sin(lat), cos(lat), 1.0);
+      posvec = aux;
+   }
+
+   glMatrixMode(GL_MODELVIEW);
+
+   glLightfv(GL_LIGHTi, GL_POSITION, posvec);
+   glLightfv(GL_LIGHTi, GL_AMBIENT, colores[0]);
+   glLightfv(GL_LIGHTi, GL_DIFFUSE, colores[1]);
+   glLightfv(GL_LIGHTi, GL_SPECULAR, colores[2]);
+}
+
+FuentePosicional::FuentePosicional(const Tupla3f & pos){
+   id = numero_fuentes;
+   numero_fuentes++;
+   pos_vec = Tupla4f(pos(0), pos(1), pos(2), 0.0);
+   colores[0] = Tupla3f(0.5, 0.5, 0.5);
+   colores[1] = Tupla3f(0.05, 0.05, 0.05);
+   colores[2] = Tupla3f(0.3, 0.3, 0.3);
+}
+
+FuenteDireccional::FuenteDireccional(float alpha_ini, float beta_ini){
+   id = numero_fuentes;
+   numero_fuentes++;
+   lon = alpha_ini;
+   lat = beta_ini;
+   posvec = Tupla4f(0.0, 0.0, 0.0, 1.0);
+   colores[0] = Tupla3f(0.5, 0.5, 0.5);
+   colores[1] = Tupla3f(0.05, 0.05, 0.05);
+   colores[2] = Tupla3f(0.3, 0.3, 0.3);
+}
+
+void ColeccionFL::activar(){
+   glEnable(GL_LIGHTING);
+   int numero_fuentes = fuentes.size();
+   for (int i = 0; i < numero_fuentes; i++)
+      fuentes.at(i)->activar(i);
+   for (int i = numero_fuentes; i < 8; i++)
+      glDisable(GL_LIGHTi);
 }
